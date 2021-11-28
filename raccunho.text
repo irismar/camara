@@ -1,0 +1,210 @@
+ if(fotos==3){ if( grau < angulo & angulo < (grau+ 15)){
+    setFotos(fotos+1);
+    setTimeout(function(){   canal= takePicture();  canal= uploadImage (); }, 0);}}
+  if(fotos==4){  if( angulo >20 & angulo < 25){
+    setFotos(fotos+1);
+    setTimeout(function(){  canal= takePicture();  canal= uploadImage (); }, 0);}}
+  if(fotos==5){  if( angulo >25 & angulo < 30){
+    setFotos(fotos+1);
+    setTimeout(function(){   canal= takePicture();  canal= uploadImage (); }, 0);}}
+  if(fotos==6){  if( angulo >30 & angulo < 35){
+    setFotos(fotos+1);
+    setTimeout(function(){  canal= takePicture();  canal= uploadImage (); }, 0);}}
+  if(fotos==7){  if( angulo >35 & angulo < 40){
+    setFotos(fotos+1);
+    setTimeout(function(){  canal= takePicture();  canal= uploadImage (); }, 0);}}
+  if(fotos==8){  if( angulo >40 & angulo < 45){
+    setFotos(fotos+1);
+    setTimeout(function(){   canal= takePicture();  canal= uploadImage (); }, 0);}}
+  if(fotos==9){  if( angulo >45 & angulo < 50){
+    setFotos(fotos+1);
+    setTimeout(function(){   canal= takePicture();  canal= uploadImage (); }, 0);}}
+  if(fotos==10){  if( angulo >50 & angulo < 55){
+    setFotos(fotos+1);
+    setTimeout(function(){  canal= takePicture();  canal= uploadImage (); }, 0);}}
+  if(fotos==11){  if( angulo >55 & angulo < 60){
+    setFotos(fotos+1);
+    setTimeout(function(){   canal= takePicture();  canal= uploadImage (); }, 0);}}
+  if(fotos==12){  if( angulo > 60 & angulo < 65){
+    setFotos(fotos+1);
+    setTimeout(function(){   canal= takePicture();  canal= uploadImage (); }, 0);}}
+  if(fotos==13){  if( angulo >65 & angulo < 70){
+    setFotos(fotos+1);
+    setTimeout(function(){   canal= takePicture();  canal= uploadImage (); }, 0);}}
+  if(fotos==14){  if( angulo >70 & angulo < 75){
+    setFotos(fotos+1);
+    setTimeout(function(){   canal= takePicture();  canal= uploadImage (); }, 0);}} 
+  if(fotos==15){  if( angulo >75 & angulo < 80){
+    setFotos(fotos+1);
+    setTimeout(function(){   canal= takePicture();  canal= uploadImage (); }, 0);}}
+  if(fotos==16){  if( angulo >80 & angulo < 85){
+    setFotos(fotos+1);
+    setTimeout(function(){   canal= takePicture();  canal= uploadImage (); }, 0);}} 
+  if(fotos==17){  if( angulo >85 & angulo < 90){
+    setFotos(fotos+1);
+    setTimeout(function(){   canal= takePicture();  canal= uploadImage (); }, 0);}}    
+  if(fotos==18){  if( angulo >90 & angulo < 95){
+    setFotos(fotos+1);
+    setTimeout(function(){   canal= takePicture(); }, 0);}}
+  if(fotos==19){  if( angulo >95 & angulo < 100){
+    setFotos(fotos+1);
+    setTimeout(function(){   canal= takePicture(); }, 0);}}
+  if(fotos==20){  if( angulo >100 & angulo < 105){
+    setFotos(fotos+1);
+    setTimeout(function(){   canal= takePicture(); }, 0);}}
+  if(fotos==21){  if( angulo >105 & angulo < 110){
+    setFotos(fotos+1);
+    setTimeout(function(){   canal= takePicture(); }, 0);}}
+  if(fotos==22){  if( angulo >110 & angulo < 115){
+    setFotos(fotos+1);
+    setTimeout(function(){   canal= takePicture(); }, 0);}} 
+  if(fotos==23){  if( angulo >115 & angulo < 120){
+    setFotos(fotos+1);
+    setTimeout(function(){   canal= takePicture(); }, 0);}} 
+  if(fotos==24){  if( angulo >120 & angulo < 125){
+    setFotos(fotos+1);            
+    setTimeout(function(){   canal= takePicture(); }, 0);}}
+  if(fotos==25){  if( angulo >125 & angulo < 130){
+      setFotos(fotos+1);
+      setTimeout(function(){   canal= takePicture(); }, 0);}}
+  if(fotos==26){  if( angulo >130 & angulo < 135){
+      setFotos(fotos+1);
+      setTimeout(function(){   canal= takePicture(); }, 0);}}
+  if(fotos==27){  if( angulo >135 & angulo < 140){
+      setFotos(fotos+1);
+      setTimeout(function(){   canal= takePicture(); }, 0);}} 
+  if(fotos==28){  if( angulo >140 & angulo < 145){
+      setFotos(fotos+1);
+      setTimeout(function(){   canal= takePicture(); }, 0);}} 
+  if(fotos==29){  if( angulo >145 & angulo < 150){
+      setFotos(fotos+1);
+      setTimeout(function(){   canal= takePicture(); }, 0);}}  
+
+      if(fotos==30){   if( angulo >150 & angulo < 155){ 
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}}
+
+        if(fotos==31){   if( angulo >155 & angulo < 160){ 
+          setFotos(fotos+1);
+          setTimeout(function(){   canal= takePicture(); }, 0);}}  
+
+      if(fotos==32){   if( angulo >160 & angulo < 165){ 
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}}
+      if(fotos==33){  if( angulo >165 & angulo <170){ 
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}}
+      if(fotos==34){  if( angulo >170 & angulo < 175){
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}}
+      if(fotos==35){  if( angulo >175 & angulo < 180 ){
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}}
+      if(fotos==36){  if( angulo >180 & angulo < 185){
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}}
+      if(fotos==37){  if( angulo >185 & angulo < 190 ){
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}}
+      if(fotos==38){  if( angulo >190 & angulo < 195){
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}}
+      if(fotos==39){  if( angulo >195 & angulo < 200){
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}}
+      if(fotos==40){  if( angulo >200 & angulo < 205){
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}}
+      if(fotos==41){  if( angulo >205 & angulo < 210){
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}}
+      if(fotos==42){  if( angulo > 210 & angulo < 215){
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}}
+      if(fotos==43){  if( angulo >215 & angulo < 220){
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}}
+      if(fotos==44){  if( angulo >220 & angulo < 225){
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}}     
+      if(fotos==45){  if( angulo >225 & angulo < 230){
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}}        
+      if(fotos==46){  if( angulo >230 & angulo < 235){
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}}     
+      if(fotos==47){  if( angulo >235 & angulo < 240){
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}}   
+      if(fotos==48){  if( angulo >240 & angulo < 245){
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}}
+      if(fotos==49){  if( angulo >245 & angulo < 250){
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}}
+      if(fotos==50){  if( angulo >250 & angulo < 255){
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}}
+      if(fotos==51){  if( angulo >255 & angulo < 260){
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}}
+      if(fotos==52){  if( angulo >260 & angulo < 265){
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}} 
+      if(fotos==53){  if( angulo >265 & angulo < 270){
+        setFotos(fotos+1);
+        setTimeout(function(){   canal= takePicture(); }, 0);}} 
+      if(fotos==54){  if( angulo >270 & angulo < 275){
+        setFotos(fotos+1);            
+        setTimeout(function(){   canal= takePicture(); }, 0);}}
+      if(fotos==55){  if( angulo >275 & angulo < 280){
+          setFotos(fotos+1);
+          setTimeout(function(){   canal= takePicture(); }, 0);}}
+      if(fotos==56){  if( angulo > 280 & angulo < 285){
+          setFotos(fotos+1);
+          setTimeout(function(){   canal= takePicture(); }, 0);}}
+      if(fotos==57){  if( angulo > 285 & angulo < 290){
+          setFotos(fotos+1);
+          setTimeout(function(){   canal= takePicture(); }, 0);}} 
+      if(fotos==58){  if( angulo > 290 & angulo < 295){
+          setFotos(fotos+1);
+          setTimeout(function(){   canal= takePicture(); }, 0);}} 
+      if(fotos==59){  if( angulo > 295 & angulo < 300){
+          setFotos(fotos+1);
+          setTimeout(function(){   canal= takePicture(); }, 0);}}     
+          if(fotos==60){  if( angulo >300 & angulo < 305){
+            setFotos(fotos+1);
+            setTimeout(function(){   canal= takePicture(); }, 0);}}
+          if(fotos==61){  if( angulo >305 & angulo < 310){
+            setFotos(fotos+1);
+            setTimeout(function(){   canal= takePicture(); }, 0);}}
+          if(fotos==62){  if( angulo >310 & angulo < 315){
+            setFotos(fotos+1);
+            setTimeout(function(){   canal= takePicture(); }, 0);}}
+          if(fotos==63){  if( angulo >315 & angulo < 320){
+            setFotos(fotos+1);
+            setTimeout(function(){   canal= takePicture(); }, 0);}}
+          if(fotos==64){  if( angulo >320 & angulo < 325){
+            setFotos(fotos+1);
+            setTimeout(function(){   canal= takePicture(); }, 0);}} 
+          if(fotos==65){  if( angulo >325 & angulo < 330){
+            setFotos(fotos+1);
+            setTimeout(function(){   canal= takePicture(); }, 0);}} 
+          if(fotos==66){  if( angulo > 330 & angulo < 335){
+            setFotos(fotos+1);            
+            setTimeout(function(){   canal= takePicture(); }, 0);}}
+          if(fotos==67){  if( angulo >335 & angulo < 340){
+              setFotos(fotos+1);
+              setTimeout(function(){   canal= takePicture(); }, 0);}}
+          if(fotos==67){  if( angulo > 340 & angulo < 345){
+              setFotos(fotos+1);
+              setTimeout(function(){   canal= takePicture(); }, 0);}}
+          if(fotos==68){  if( angulo > 345 & angulo < 350){
+              setFotos(fotos+1);
+              setTimeout(function(){   canal= takePicture(); }, 0);}} 
+          if(fotos==69){  if( angulo > 350 & angulo < 355){
+              setFotos(fotos+1);
+              setTimeout(function(){   canal= takePicture(); }, 0);}} 
+          if(fotos==70){  if( angulo > 355 & angulo < 360){
+              setFotos(fotos+1);
+              setTimeout(function(){   canal= takePicture(); }, 0);}}   
