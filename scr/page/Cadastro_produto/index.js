@@ -1,42 +1,41 @@
 import React, { useState, useEffect,useRef } from 'react';
-import { Button, Text } from 'react-native-elements';
-import { Alert, KeyboardAvoidingView, StatusBar, StyleSheet, Image, TextInput,  View, ScrollView,Select } from 'react-native';
+import { Button, Input, Text } from 'react-native-elements';
+import { Alert, KeyboardAvoidingView, StatusBar, TouchableOpacity,StyleSheet, Image, TextInput,  View, ScrollView,Select } from 'react-native';
 import{FontAwesome} from '@expo/vector-icons';
 import { Picker  } from '@react-native-picker/picker';
 import { TextInputMask } from 'react-native-masked-text'
 
-
+import { RadioButton } from 'react-native-paper';
 import  Icon  from 'react-native-vector-icons/FontAwesome5';
 import { saveToLibraryAsync } from 'expo-media-library';
-
+import styles from '../Estilo';
 
 
 export default function Cadastro_produto( {navigation, route}) {
 
-
+  const [id_anuncio, setId_anuncio] = useState();
   const [selectedLanguage, setSelectedLanguage] = useState();
   const [titulo,setTitulo]=useState(null);
-  const [ categoria,setCategoria]=useState( ['Escalha uma Categoria','Roupas','Calcados','Acessorios', 'Moda','Comida','Brinquedo']);
+  const [ categoria,setCategoria]=useState( 'Roupas');
   const [catagoriaselecionada,setCategoriaselecionada]=useState([])
-  const [ estado,setEstado]=useState( ['Estado Novo ou Usado','Novo','usado']);
+  const [ estado,setEstado]=useState( 'Novo');
   const [estadoselecionado,setEstadoselecionado]=useState([])
-  
+  const [value1, setValue1] = useState('Novo');
     const [status, setStatus] = useState({
         type: '',
         mensagem: ''
-      })
-     
+      })     
     
 
    
-    
+    const [id_anuciante,setId_anuciante]=useState(route.params?.id_anunciante)
     const [nome,setNome]=useState(null);
     const [descricao,setDescricao]=useState(null);
     const [ preco,setPreco]=useState(null);
    
-    var produto={ titulo:titulo, categoria:catagoriaselecionada,estado:estadoselecionado,preco:preco,descricao:descricao}
+    var produto={ titulo:titulo, categoria: categoria,estado:estado,preco:preco,descricao:descricao,id_anuciante:id_anuciante}
              
-    
+console.log(produto)
               async function  gravar() {  
         await fetch("https://anuncio360.com/projeto/cadastrar.php", {
             method: 'POST',
@@ -57,7 +56,7 @@ export default function Cadastro_produto( {navigation, route}) {
                   mensagem: responseJson.messagem
                 });
               } else {
-                  ir_para_foto()
+              
                /// alert('deu certo');
               // navigation.reset( { index:0, routes:[{name:"Sobre"}]})
                // var ir= navigation.navigate('Cadastro') 
@@ -65,6 +64,8 @@ export default function Cadastro_produto( {navigation, route}) {
                   type: 'success',
                   mensagem: responseJson.messagem
                 });
+                setId_anuncio(responseJson.id_anuncio)
+                navigation.navigate('Sobre',{id_anuncio:responseJson.id_anuncio,id_anunciante:route.params?.id_anunciante})
               }
             }).catch(() => {
               setStatus({
@@ -72,14 +73,10 @@ export default function Cadastro_produto( {navigation, route}) {
                 mensagem: 'Produto não cadastro com sucesso, tente mais tarde!'
               });
             });
-            consele.log(status)
+            
         }
       
 
-    function ir_para_foto(){
-
-        navigation.navigate('Sobre',{cod:'989r49ejdfdUI873'})
-    }
 
 
     
@@ -105,7 +102,11 @@ export default function Cadastro_produto( {navigation, route}) {
 
   < View style={styles.topo3} >
    
-   <FontAwesome.Button onPress={()=>navigation.navigate('Home')}  name="home" margin='2%' size={29} color="#42555e" backgroundColor="#9e9e9e00" >
+   <FontAwesome.Button onPress={()=>  navigation.reset({
+            index: 0,
+            routes: [{ name: 'Home_logado' }],
+
+          })} name="home" margin='2%' size={29} color="#42555e" backgroundColor="#9e9e9e00" >
    <Text  style={styles.fonteadicionar} > </Text>
  </FontAwesome.Button>
     </View> 
@@ -114,47 +115,53 @@ export default function Cadastro_produto( {navigation, route}) {
          
            <KeyboardAvoidingView  style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={90}   >
-      <ScrollView>      
-    <View  >
-    <Text style={styles.label}>Titudo do Anúncio</Text>
-  
-    <TextInput style={styles.input}   placeholder="Titulo do Anúncio" leftIcon={{ type: 'font-awesome', name: 'archive' }}
-     onChangeText={value =>setTitulo(value) } /> 
-     </View>
-
-     <View  >
-    
-     <Picker style={styles.pik}
-  selectedValue={catagoriaselecionada}
-  onValueChange={(itemValue) => setCategoriaselecionada(itemValue)}>
-   {
-     categoria.map ( cr => { return  <Picker.Item label={cr} value={cr} />})
-   }
+      <ScrollView>     
    
-  
-</Picker>
+<TouchableOpacity  style={styles.button} >
+      </TouchableOpacity>
+      <View>
+              <Input
+ placeholder="Titulo Anuncio"
+   leftIcon={{ type: 'font-awesome', name: 'id-badge' }}   
+   style={styles.input}    autoCorrect={false}
+   onChangeText={value => setTitulo(value) } />
+       </View>
+
+
+    
+       <View  >
+  <RadioButton.Group   color='#ffffff'  onValueChange={value => setCategoria(value)} value={categoria}>
+        
+      <Text style={styles.label}>Categotia</Text>
+      <RadioButton.Item   style={styles.button5} label="Roupas" labelStyle={styles.font_branca}  value="Roupas" />
+      <RadioButton.Item  style={styles.button5} label="Acessorios de Moda" labelStyle={styles.font_branca}  value="acessorios de Moda" />
+      <RadioButton.Item   style={styles.button5} label="Comida" labelStyle={styles.font_branca}  value="Comida" />
+      <RadioButton.Item  style={styles.button5} label="Eletrônicos " labelStyle={styles.font_branca}  value="Eletônicos" />
+      <RadioButton.Item   style={styles.button5} label="Brinquedos" labelStyle={styles.font_branca}  value="Brinquedos" />
+      <RadioButton.Item  style={styles.button5} label="outros" labelStyle={styles.font_branca}  value="outros" />
+       </RadioButton.Group>
+    
+     
 </View>
+    
 
 
 <View  >
+  <RadioButton.Group   color='#ffffff'  onValueChange={value => setEstado(value)} value={estado}>
+        
+      <Text style={styles.label}>Estado do Produto{route.params?.id_anunciante}</Text>
+      <RadioButton.Item   style={styles.button5} label="Novo" labelStyle={styles.font_branca}  value="Novo" />
+      <RadioButton.Item  style={styles.button5} label="Usado" labelStyle={styles.font_branca}  value="Usado" />
+    </RadioButton.Group>
     
-     <Picker style={styles.pik}
-  selectedValue={estadoselecionado}
-  onValueChange={(itemValue) => setEstadoselecionado(itemValue)}>
-   {
-     estado.map ( tcr => { return  <Picker.Item label={tcr} value={tcr} />})
-
-   }
-   
-  
-</Picker>
+     
 </View>
 
 
 
      <View >
-    <Text style={styles.label}>Preço</Text>
-    <TextInputMask  style={styles.input}  
+    <Text style={styles.label} leftIcon={{ type: 'font-awesome', name: 'id-badge' }} > Preço</Text>
+    <TextInputMask  style={styles.button5}   
   type={'money'}
   options={{
     precision: 2,
@@ -183,9 +190,13 @@ export default function Cadastro_produto( {navigation, route}) {
     
      
      <View >
-     <FontAwesome.Button style={styles.salvar}  onPress={()=> gravar()} name="save" color="#009688" backgroundColor="#14151800" >
-      <Text  style={styles.font} >Salvar </Text>
+
+     
+      <FontAwesome.Button  onPress={()=> gravar()} style={styles.button_salvar_cadastro} name="save" size={20}    color="#ffffff" backgroundColor="#feffff" >
+      <Text  style={styles.font_branca} >Salvar </Text>
       </FontAwesome.Button>
+
+     
       </View>
       </ScrollView>   
       
@@ -199,169 +210,4 @@ export default function Cadastro_produto( {navigation, route}) {
     );
   }
   
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-
-    pik:{
-      width:'90%',
-      marginLeft:'4%',
-      height:150,
-      fontSize:14,
-    },
-    label:{  
-    fontSize:14,
-    marginTop: 10,
-    marginBottom: -10,
-    height:16,
-    width:'90%',
-    marginLeft:'4%',
-  },
-
-    salvar:{
-     
-      alignItems:'center',
-      justifyContent:'center',
-      color:'#196fe1',
-      backgroundColor:'#14151800',
-
-    },  
-    font: {  
-                  fontFamily:'Ubuntu_300Light',
-                  alignItems: 'center',
-                  justifyContent:'center',
-                  fontSize:22,
-                  color:'#3f51b5', 
-                  fontWeight:'400',
-                  padding:5,
-                
-     },
-        input: {
-               height:50,
-               width:'90%',
-               borderRadius:6,
-               marginLeft:'4%',
-               marginTop:'6%',
-               color:'#000000', 
-               fontSize:16,
-               alignItems:'center',
-               justifyContent:'center',
-                
-               borderColor:'#cacdcfcc',
-               borderWidth:1,
-               backgroundColor:'#ebedef',
-                    },
-                  
-    input_texarea:{
-      height:150,
-      width:'90%',
-      borderRadius:6,
-      marginLeft:'4%',
-      marginTop:'6%',
-      color:'#000000', 
-      fontSize:16,
-      alignItems:'center',
-      justifyContent:'center',
-       
-      borderColor:'#cacdcfcc',
-      borderWidth:1,
-      backgroundColor:'#ebedef',
-    
-                    },      
-    topo3: {
-    width:'45%',
-    marginTop:'6%',
-     }  
-            
-                    ,
-                    textologo: {
-                      fontFamily:'Ubuntu_300Light',
-                     flexDirection: 'row', 
-                       marginTop:'10%',
-                     fontSize:22,
-                     textAlign: 'left',
-                     marginLeft:'-2%',
-                      } 
-                    ,
-                    
-                    head:{
-                     width:50,
-                     marginTop:'6%',
-                     marginLeft:10,  
-                     height:50,
-                    },
-                    fonteadicionar: {  
-                      color:'#4630eb', 
-                      fontSize:12,
-                      
-                       
-                      
-                        },  
-                       
-                          topo1: {
-                            width:'20%',
-                             marginTop:'6%',
-                          
-                            },
-                            topo2: {
-                              width:'65%',
-                               marginTop:'6%',
-                            
-                              },
-                          
-                              topo3: {
-                                width:'45%',
-                                 marginTop:'6%',
-                              
-                                }  
-                            
-                            ,
-                            textologo: {
-                              fontFamily:'Ubuntu_300Light',
-                             flexDirection: 'row', 
-                               marginTop:'10%',
-                             fontSize:22,
-                             textAlign: 'left',
-                             marginLeft:'-2%',
-                              } 
-                            ,
-                            
-                            head:{
-                             width:50,
-                             marginTop:'6%',
-                             marginLeft:10,  
-                             height:50,
-                            },
-                            fonteadicionar: {  
-                              color:'#4630eb', 
-                              fontSize:12,
-                              
-                               
-                              
-                                },                
-  });
-  
-const pickerSelectStyles = StyleSheet.create({
-  inputIOS: {
-    fontSize: 16,
-    paddingVertical: 12,
-    paddingHorizontal: 10,
-    borderWidth: 1,
-    borderColor: 'gray',
-    borderRadius: 4,
-    color: 'black',
-    paddingRight: 30, // to ensure the text is never behind the icon
-  },
-  inputAndroid: {
-    fontSize: 16,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderWidth: 0.5,
-    borderColor: 'purple',
-    borderRadius: 8,
-    color: 'black',
-    paddingRight: 30, // to ensure the text is never behind the icon
-  },
-});
+         

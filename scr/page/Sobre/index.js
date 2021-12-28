@@ -1,30 +1,30 @@
 import React, { useState, useEffect,useRef } from 'react';
-import { Alert, StyleSheet, Text, View,  SafeAreaView ,TouchableOpacity,Image,StatusBar} from 'react-native';
+import { StyleSheet, Text, View,  SafeAreaView ,TouchableOpacity,Modal,Image, ListViewBase} from 'react-native';
 import { Camera } from 'expo-camera';
 import{FontAwesome} from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DeviceMotion } from 'expo-sensors';
+import * as Location from 'expo-location';
 import * as MediaLibrary from 'expo-media-library';
 
-
 export default function Sobre ( {route, navigation}) {
+const[id_anunciante,setId_anunciante]=useState(route.params?.id_anunciante)
+const[id_anuncio,setId_anuncio]=useState(route.params?.id_anuncio)
 
+const[captura, setCapitura]=useState(false)
+const[modal, setModal]=useState(false)
 const [latitude, setLatitude] = useState(0);
- const [longitude, setLongitude] = useState(0);
- const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
-  const [status, requestPermission] = MediaLibrary.usePermissions();
-  const [hasPermission, setHasPermission] = useState(null);
+const [longitude, setLongitude] = useState(0);
+const [location, setLocation] = useState(null);
+const [errorMsg, setErrorMsg] = useState(null);
+const [status, requestPermission] = MediaLibrary.usePermissions();
+ const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(
     Camera.Constants.Type.back,
     Camera.Constants.WhiteBalance.auto,
     Camera.Constants.VideoStabilization.auto,    
-   Camera.Constants.AutoFocus.auto
+
     );
-    const [retorno, setRetorno] = useState({
-      type: '',
-      mensagem: ''
-    })
-  
   const asset=useState(0);  
   const camRef=useRef(null);
   const [capturedPhoto, setCapturedPhoto]=useState(null);
@@ -32,8 +32,9 @@ const [latitude, setLatitude] = useState(0);
   const [data, setData] = useState({    t: 0,    y: 0,    z: 0,
   });
   const [subscription, setSubscription] = useState(null);
-  const [cod, setCod] = useState();
-  const [fotos, setFotos] = useState(0);  const [grau, setGrau] = useState(null);
+
+  const [fotos, setFotos] = useState(0);
+  const [grau, setGrau] = useState(null);
   const [grau360, setGrau360] = useState(0);
 
   const [angulo360, setAngulo360]=useState(0);  
@@ -42,25 +43,40 @@ const [latitude, setLatitude] = useState(0);
     setSubscription(
      
       DeviceMotion .addListener(({ rotation }) => {   
-            setData(rotation);     
+     // Gyroscope.addListener(gyroscopeData => {
+        setData(rotation);     
            })    );  };
   const _unsubscribe = () => {
     subscription && subscription.remove();
     setSubscription(null);  };
-    useEffect(() => {
-    _subscribe();
-    return () => _unsubscribe();
+  useEffect(() => {
+    DeviceMotion .addListener(({ rotation }) => {   
+      // Gyroscope.addListener(gyroscopeData => {
+         setData(rotation);     
+            }) 
   }, []);
+ /////////////////////////////
+
+ ////////////////////////////
   const { alpha } =data;
   var angulo;
   angulo=roundToTwo(alpha);
   angulo= roundToTwo(((angulo+4.01-0.)*57)-49);
+  //angulo= numero_inteiro(angulo);
+ // console.log (data) ;
+ 
   useEffect(() => {  
     (async () => {  
-      const { status } = await Camera.requestCameraPermissionsAsync();     
-      setHasPermission(status === 'granted');    })  ();
+      const { status } = await Camera.requestCameraPermissionsAsync();
+     
+      setHasPermission(status === 'granted');
+    })
+     ();
+
+
      (async () => {  
-      const { status } = await MediaLibrary.requestPermissionsAsync();     
+      const { status } = await MediaLibrary.requestPermissionsAsync();
+     
       setHasPermission(status === 'granted');
     })
      ();
@@ -69,6 +85,7 @@ const [latitude, setLatitude] = useState(0);
   
 
 
+  
 
   if (hasPermission === null) {
     return <View />;
@@ -77,28 +94,96 @@ const [latitude, setLatitude] = useState(0);
     return <Text>No access to camera</Text>;
   }
  
-  ///console.log(dod);
-   takePicture=  async () =>{  
-
-    setCod(route.params?.cod );
-  //var dod=route.params?.cod;
+  
+  
+  //console.log(location);
+   takePicture=async () =>{  
   if(camRef){    
     const data=await camRef.current.takePictureAsync();
     //console.log (data);      
-    setCapturedPhoto(data.uri);  
-    uploadImage();
+    setCapturedPhoto(data.uri); 
+    salvar_foto() 
+    /////uploadImage();
   }  };
+
+  salvar_foto = async () => { 
+    if(fotos==1){ await AsyncStorage.setItem('FOTO_SALVAR_1', capturedPhoto); 
+    setModal(true)
+    enviar_fotos_para_server ()}
+    if(fotos==2){ await AsyncStorage.setItem('FOTO_SALVAR_2', capturedPhoto)}
+    if(fotos==3){ await AsyncStorage.setItem('FOTO_SALVAR_3', capturedPhoto)}
+    if(fotos==4){ await AsyncStorage.setItem('FOTO_SALVAR_4', capturedPhoto)}
+    if(fotos==5){ await AsyncStorage.setItem('FOTO_SALVAR_5', capturedPhoto)}
+    if(fotos==6){ await AsyncStorage.setItem('FOTO_SALVAR_6', capturedPhoto)}
+    if(fotos==7){ await AsyncStorage.setItem('FOTO_SALVAR_7', capturedPhoto)}
+    if(fotos==8){ await AsyncStorage.setItem('FOTO_SALVAR_8', capturedPhoto)}
+    if(fotos==9){ await AsyncStorage.setItem('FOTO_SALVAR_9', capturedPhoto)}
+    if(fotos==10){ await AsyncStorage.setItem('FOTO_SALVAR_10', capturedPhoto)}
+    if(fotos==11){ await AsyncStorage.setItem('FOTO_SALVAR_11', capturedPhoto)}
+    if(fotos==12){ await AsyncStorage.setItem('FOTO_SALVAR_12', capturedPhoto)}
+    if(fotos==13){ await AsyncStorage.setItem('FOTO_SALVAR_13', capturedPhoto)}
+    if(fotos==14){ await AsyncStorage.setItem('FOTO_SALVAR_14', capturedPhoto)}
+    if(fotos==15){ await AsyncStorage.setItem('FOTO_SALVAR_15', capturedPhoto)}
+    if(fotos==16){ await AsyncStorage.setItem('FOTO_SALVAR_16', capturedPhoto)}
+    if(fotos==17){ await AsyncStorage.setItem('FOTO_SALVAR_17', capturedPhoto)}
+    if(fotos==18){ await AsyncStorage.setItem('FOTO_SALVAR_18', capturedPhoto)}
+    if(fotos==19){ await AsyncStorage.setItem('FOTO_SALVAR_19', capturedPhoto)}
+    if(fotos==20){ await AsyncStorage.setItem('FOTO_SALVAR_20', capturedPhoto)}
+    if(fotos==10){ await AsyncStorage.setItem('FOTO_SALVAR_10', capturedPhoto)}
+    if(fotos==11){ await AsyncStorage.setItem('FOTO_SALVAR_11', capturedPhoto)}
+    if(fotos==12){ await AsyncStorage.setItem('FOTO_SALVAR_12', capturedPhoto)}
+    if(fotos==13){ await AsyncStorage.setItem('FOTO_SALVAR_13', capturedPhoto)}
+    if(fotos==14){ await AsyncStorage.setItem('FOTO_SALVAR_14', capturedPhoto)}
+    if(fotos==15){ await AsyncStorage.setItem('FOTO_SALVAR_15', capturedPhoto)}
+    if(fotos==16){ await AsyncStorage.setItem('FOTO_SALVAR_16', capturedPhoto)}
+    if(fotos==17){ await AsyncStorage.setItem('FOTO_SALVAR_17', capturedPhoto)}
+    if(fotos==18){ await AsyncStorage.setItem('FOTO_SALVAR_18', capturedPhoto)}
+    if(fotos==19){ await AsyncStorage.setItem('FOTO_SALVAR_19', capturedPhoto)}
+    if(fotos==20){ await AsyncStorage.setItem('FOTO_SALVAR_20', capturedPhoto)}
+    if(fotos==21){ await AsyncStorage.setItem('FOTO_SALVAR_21', capturedPhoto)}
+    if(fotos==22){ await AsyncStorage.setItem('FOTO_SALVAR_22', capturedPhoto)}
+    if(fotos==23){ await AsyncStorage.setItem('FOTO_SALVAR_23', capturedPhoto)}
+    if(fotos==24){ await AsyncStorage.setItem('FOTO_SALVAR_24', capturedPhoto)}
+    if(fotos==25){ await AsyncStorage.setItem('FOTO_SALVAR_25', capturedPhoto)}
+    if(fotos==26){ await AsyncStorage.setItem('FOTO_SALVAR_26', capturedPhoto)}
+    if(fotos==27){ await AsyncStorage.setItem('FOTO_SALVAR_27', capturedPhoto)}
+    if(fotos==28){ await AsyncStorage.setItem('FOTO_SALVAR_28', capturedPhoto)}
+    if(fotos==29){ await AsyncStorage.setItem('FOTO_SALVAR_29', capturedPhoto)}
+    if(fotos==30){ await AsyncStorage.setItem('FOTO_SALVAR_30', capturedPhoto)}
+    if(fotos==31){ await AsyncStorage.setItem('FOTO_SALVAR_31', capturedPhoto)}
+    if(fotos==32){ await AsyncStorage.setItem('FOTO_SALVAR_32', capturedPhoto)}
+    if(fotos==33){ await AsyncStorage.setItem('FOTO_SALVAR_33', capturedPhoto)}
+    if(fotos==34){ await AsyncStorage.setItem('FOTO_SALVAR_34', capturedPhoto)}
+    if(fotos==35){ await AsyncStorage.setItem('FOTO_SALVAR_35', capturedPhoto)}
+    if(fotos==36){ await AsyncStorage.setItem('FOTO_SALVAR_36', capturedPhoto)}
+    if(fotos==37){ await AsyncStorage.setItem('FOTO_SALVAR_37', capturedPhoto)}
+    if(fotos==38){ await AsyncStorage.setItem('FOTO_SALVAR_38', capturedPhoto)}
+    if(fotos==39){ await AsyncStorage.setItem('FOTO_SALVAR_39', capturedPhoto)}
+    if(fotos==40){ await AsyncStorage.setItem('FOTO_SALVAR_40', capturedPhoto)  
+    ///////////////////apos a ultima foto mandar salvar mudata tela
+   
+
+  }   }
+
+  /////ler dados salvar na nuvem
+
+
+  async function  enviar_fotos_para_server (){
+  foto_salvar_1=await AsyncStorage.getItem('FOTO_SALVAR_1');if(foto_salvar_1){ enviar(foto_salvar_1) }
+
+
+  }
+
+
+
+async function enviar(data) { 
   
-  // console.log(dod)
-//función para subir imagen al server, en este caso es un servidor en PHP
-uploadImage = async () => { 
   /// envia para algum
   const asset= await MediaLibrary.createAssetAsync(capturedPhoto);  
   let formData = new FormData();
-  formData.append('photo', { uri:capturedPhoto, name: capturedPhoto, type });
-
-  formData.append('codigo', {name:cod });
-  await fetch('https://anuncio360.com/projeto/foto.php', {
+  formData.append('photo', { uri:data, name: data, type });
+  formData.append('codigo', {name:id_anunciante });
+   await fetch('https://anuncio360.com/projeto/foto.php', {
      method: 'POST',
      body: formData,
     header: {
@@ -107,60 +192,25 @@ uploadImage = async () => {
      
    }   )
 
-   .then((response) => response.json())
-   .then((responseJson) => {
-   /////console.log(responseJson)
-     if (responseJson.erro) {
-         Alert.alert(retorno.mensagem,'presicione Desativar Captura incie nova Captura de Fotos');
-       setRetorno({
-         type: 'erro',
-         mensagem: responseJson.messagem
-       });
-     } else {
-     // alert(retorno.mensagem);
-     // navigation.reset( { index:0, routes:[{name:"Sobre"}]})
-      // var ir= navigation.navigate('Cadastro') 
-       setRetorno({
-         type: 'success',
-         mensagem: responseJson.messagem
-       });
-     }
-   }).catch(() => {
 
 
-
-     setRetorno({
-    
-       type: 'erro',
-       mensagem: 'Produto não cadastro com sucesso, tente mais tarde!'
-     });
-   }); 
+  
  
-   if(fotos==72){
-    Alert.alert(
-      'Captura Concluida Com Sucesso ',
-      'Seja Cadastrar Novo Produto ?',
-      [
-        {
-          text: 'Sim',
-          onPress: () =>navigation.navigate('Home'),
-          style: 'cancel',
-        },
-        { 
-          text: 'Retornar para HOme', 
-          onPress: () =>navigation.navigate('Home')
-        }
-      ],
-      {
-        onDismiss: () => console.log('Dismiss')
-      }
-    );
-   }
+   
 }
 
 start = async () => {
-
+  setCapitura(true)
   setGrau(angulo); 
+  setFotos(0);
+  var tornar720;
+  setAngulo360(0); 
+
+}
+
+stop = async () => {
+  setCapitura(false)
+  setGrau(false); 
   setFotos(0);
   var tornar720;
   setAngulo360(0); 
@@ -189,9 +239,9 @@ transformar  = async () => {
 /// so começar a correr o if se for abilitado 
 
 
-if(fotos==0){   if(  angulo +angulo360 >(grau +1)  & angulo +angulo360<  (grau +5)){
+if(fotos==0){   if(  angulo +angulo360 >(grau +4)  & angulo +angulo360<  (grau +6)){
   setFotos(fotos+1); canal= takePicture();  }   } 
-if(fotos==1){   if(  angulo +angulo360 >(grau +5)  & angulo +angulo360<  (grau +10)){   
+if(fotos==1){   if(  angulo +angulo360 >(grau +6)  & angulo +angulo360<  (grau +10)){   
   setFotos(fotos+1);     canal= takePicture(); }      }
 if(fotos==2){   if(  angulo +angulo360 >(grau +10) & angulo +angulo360< (grau +15)){   
   setFotos(fotos+1);     canal= takePicture(); }      }   
@@ -333,107 +383,98 @@ if(fotos==69){   if(  angulo +angulo360 >(grau +345) & angulo +angulo360< (grau 
 if(fotos==70){  if(  angulo +angulo360 >(grau +350) & angulo +angulo360< (grau +355)){   
               setFotos(fotos+1);     canal= takePicture(); }      }      
  if(fotos==71){  if(  angulo +angulo360 >(grau +350) & angulo +angulo360< (grau +360)){   
-              setFotos(fotos+1);     canal= takePicture(); }   
-           
-            
-            }      
+              setFotos(fotos+1);     canal= takePicture(); }      }      
     
-}                  
+}   
+
+if (captura  ) {
   return (
-
-    
-   <>
-    <StatusBar backgroundColor="#000" translucent={true} />
-       <View style={{flexDirection:'row'}} >
-
-       <View style={styles.topo1} >
-         <Image
-          source ={require('../../asset/logo_50.png')}
-          style={styles.head}
-         />
-         </View> 
-       
-         <View style={styles.topo2} >
-         <Text style={styles.textologo}>Anuncio360.com</Text>
-         </View> 
-
-
-         < View style={styles.topo3} >
-          
-          <FontAwesome.Button onPress={()=>navigation.navigate('Home')}  name="home" margin='2%' size={29} color="#42555e" backgroundColor="#9e9e9e00" >
-          <Text  style={styles.fonteadicionar} > </Text>
-        </FontAwesome.Button>
-           </View> 
-
-       </View>
+    <SafeAreaView style={styles.container}>
+   <View >
  
-<View style={{flexDirection:'row'}} >
-<View style={styles.topo2} >
-         
-         <TouchableOpacity  style={styles.button2} >
-        </TouchableOpacity>
-        <FontAwesome.Button  onPress={() =>{ start(); }} style={styles.button3} name="image" size={15} color="#4630eb" backgroundColor="#feffff" >
-        <Text style={styles.font2}>{grau ? 'Desativar Captura' : 'Ativar Captura'}</Text>
-           
-        </FontAwesome.Button>
-    
-     </View>
-
-
-
-  <View style={styles.topo3} >
-         
-       <TouchableOpacity  style={styles.button2} >
-      </TouchableOpacity>
-      <FontAwesome.Button   style={styles.button3} name="image" size={15} color="#4630eb" backgroundColor="#feffff" >
-      
-            <Text style={styles.font3}>
-     {fotos ? fotos : '0'}     
-      </Text>
-      </FontAwesome.Button>
-  
-   </View>
-   
-
-   
-
-
-
-
- </View>
-
-
-     
-    
        
-        
+     
       
-   
+    </View>
       <Camera style={styles.camera}
       ref={camRef}
       type={type}>
-        <SafeAreaView style={styles.buttonContainer}>
-        
-          
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              setType(
-                type === Camera.Constants.Type.back
-                  ? Camera.Constants.Type.front
-                  : Camera.Constants.Type.back
-              );
-            }}>            
-            <Text style={styles.text}> Flip </Text>
-          </TouchableOpacity>
-        </SafeAreaView>
-      </Camera>     
-      <TouchableOpacity  style={styles.button} onPress={takePicture}>
-      <FontAwesome name="camera" size={23} color="#4630eb"/>
-      </TouchableOpacity>
 
-      </> )
+      <View style={{flexDirection:'row'}} >
+    
+
+
+
+
+      <View style={styles.topo3} >                    
+             <FontAwesome.Button  style={styles.button3}  onPress={() => navigation.goBack()} name="arrow-left" size={15} color="#ffffff47"   backgroundColor="#959ca347" >
+            
+             </FontAwesome.Button> 
+      </View>
+        
+         
+      <View style={styles.topo2} >         
+           <FontAwesome.Button  onPress={() =>{ stop(); }} style={styles.button3} name="image" size={15}color="#ffffff47"  backgroundColor="#9e9e9e14" >
+           <Text style={styles.font_Vermelha}>Desativar Capitura</Text>     
+          </FontAwesome.Button>
+      </View>
+         
+      <View style={styles.topo3} >                    
+             <FontAwesome.Button  style={styles.button3} name="image" size={15} color="#3a3b3c47"  backgroundColor="#959ca347" >
+             <Text style={styles.font3}>{fotos ? fotos : '0'} </Text>
+             </FontAwesome.Button> 
+      </View>
+      </View>   
+      
+      
+      </Camera>  
+    </SafeAreaView>  );
+ 
+
+}else {
+
+  return (
+    <SafeAreaView style={styles.container}>
+   <View >
+ 
+       
+     
+      
+    </View>
+      <Camera style={styles.camera}
+      ref={camRef}
+      type={type}>
+
+      <View style={{flexDirection:'row'}} >
+
+      <View style={styles.topo3} >                    
+             <FontAwesome.Button  style={styles.button3}  onPress={() => navigation.goBack()} name="arrow-left" size={15} color="#ffffff47"   backgroundColor="#959ca347" >
+            
+             </FontAwesome.Button> 
+      </View>
+        
+         
+      <View style={styles.topo2} >         
+           <FontAwesome.Button  onPress={() =>{ start(); }} style={styles.button3} name="image" size={15}color="#ffffff47"  backgroundColor="#9e9e9e14" >
+           <Text style={styles.font_verde}>{route.params.id_anuncio}{route.params.id_anunciante}</Text>     
+          </FontAwesome.Button>
+      </View>
+         
+      <View style={styles.topo3} >                    
+             <FontAwesome.Button  style={styles.button3} name="image" size={15} color="#3a3b3c47"  backgroundColor="#959ca347" >
+             <Text style={styles.font3}>{fotos ? fotos : '0'} </Text>
+             </FontAwesome.Button> 
+      </View>
+      </View>   
+      
+      
+      </Camera>  
+    </SafeAreaView>  );
+}
+  
   }
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -461,8 +502,8 @@ const styles = StyleSheet.create({
     color: '#e91e63',
   },
   button3: {  
-    color:'#4630eb', 
-     backgroundColor:'#d9d7d785',
+    color:'#ffffff47', 
+    
       height:50,
      
       alignItems: 'center',
@@ -493,25 +534,42 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent:'center',
         fontSize:19,
-        color:'#009688', 
+        color:'#fffffffa', 
         fontWeight:'400',
       
         },
-   
+        font_verde: {  
+          fontFamily:'Ubuntu_700Bold', 
+          alignItems: 'center',
+          justifyContent:'center',
+          fontSize:19,
+          color:'#009688', 
+          fontWeight:'400',
+        
+          },
+          font_Vermelha: {  
+            fontFamily:'Ubuntu_300Light',
+            alignItems: 'center',
+            justifyContent:'center',
+            fontSize:19,
+            color:'#e91e63', 
+            fontWeight:'400',
+          
+            },   
     topo1: {
       width:'20%',
        marginTop:'6%',
     
       },
       topo2: {
-        width:'65%',
-         marginTop:'6%',
+        width:'60%',
+         marginTop:5,
       
         },
     
         topo3: {
-          width:'45%',
-           marginTop:'6%',
+          width:'20%',
+           margin:5,
         
           }  
       
@@ -544,8 +602,10 @@ const styles = StyleSheet.create({
 
 
 
+
+
 function roundToTwo(num) {
   return +(Math.round(num + "e+3")  + "e-3");
 }
 
-function numero_inteiro(num1){ return Math.round(Number(num1)); };
+function numero_inteiro(num1){ return Math.round(Number(num1)); };8

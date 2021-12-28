@@ -33,37 +33,41 @@ export default function Cadastro( {navigation, route}) {
 
          < View style={styles.topo3} >
           
-          <FontAwesome.Button onPress={()=>navigation.navigate('Home')}  name="home" margin='2%' size={29} color="#42555e" backgroundColor="#9e9e9e00" >
-          <Text  style={styles.fonteadicionar} > </Text>
-        </FontAwesome.Button>
+         <FontAwesome.Button onPress={()=>navigation.navigate('Login')  }  name="arrow-left" margin='2%' size={19} color="#42555e" backgroundColor="#9e9e9e00" >
+  
+  </FontAwesome.Button>
            </View> 
 
        </View>
-       <View style={{ flex: 1, alignItems: 'center' }}>
+       <View style={{ flex: 1, alignItems: 'center',  }}>
 
       <TouchableOpacity style={{  alignItems: 'center', justifyContent: 'center' }}>
       <Text style={{   fontFamily:'Ubuntu_300Light', fontSize:33, alignItems: 'center', margin:'10%', justifyContent: 'center' }}>Vou Anunciar </Text>
 
       </TouchableOpacity>
-      <FontAwesome.Button onPress={()=>navigation.navigate('Imovel')}  style={styles.button3}name="home"  size={39} color="#36a9a9" backgroundColor="#feffff" >
-      <Text  style={styles.font} >Imovel </Text>
+
+
+      
+            
+      <FontAwesome.Button onPress={()=>navigation.navigate('Imovel', {tipo_anuncio:'Imovel'}) } style={styles.button_branco_300}name="home"  size={22} color="#ffffff"  >
+      <Text  style={styles.font_branca} >Imovel </Text>
       </FontAwesome.Button>
 
       <TouchableOpacity  style={styles.button2} >
       </TouchableOpacity>
-      <FontAwesome.Button onPress={()=>navigation.navigate('Automovel')} style={styles.button3} name="car" size={39} color="#c53a2f" backgroundColor="#feffff" >
-      <Text  style={styles.font} >Automovel </Text>
+      <FontAwesome.Button onPress={()=>navigation.navigate('Automovel', {tipo_anuncio:'Automovel'}) } style={styles.button_branco_300} name="car" size={22} color="#ffffff"  >
+      <Text  style={styles.font_branca} >Automovel </Text>
       </FontAwesome.Button>
       
       <TouchableOpacity  style={styles.button2} >
       </TouchableOpacity>
-      <FontAwesome.Button onPress={()=>navigation.navigate('Sobre')} style={styles.button3} name="map" size={39} color="#196fe1" backgroundColor="#feffff" >
-      <Text  style={styles.font} >Locais</Text>
+      <FontAwesome.Button onPress={()=>navigation.navigate('Local',  {tipo_anuncio:'Local'}) } style={styles.button_branco_300} name="map" size={22} color="#ffffff"  >
+      <Text  style={styles.font_branca} >Locais</Text>
       </FontAwesome.Button>
       <TouchableOpacity  style={styles.button2} >
       </TouchableOpacity>
-      <FontAwesome.Button onPress={()=>navigation.navigate('Cadastro_produto')} style={styles.button3} name="cart-plus" size={39}   borderRadius={12} color="#fbbc04" backgroundColor="#feffff" >
-      <Text  style={styles.font} >Produto </Text>
+      <FontAwesome.Button onPress={()=> navigation.navigate('Cadastro_usuario', {tipo_anuncio:'Produto'}) } style={styles.button_branco_300} name="cart-plus" size={22} color="#ffffff"  >
+      <Text  style={styles.font_branca} >Produtos </Text>
       </FontAwesome.Button>
 
       

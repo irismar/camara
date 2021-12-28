@@ -2,35 +2,69 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import { StatusBar } from "expo-status-bar";
 import { WebView } from 'react-native-webview';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Image, SafeAreaView, View, FlatList, StyleSheet, Text, TouchableOpacity, ScrollView, ActivityIndicator, Alert } from 'react-native';
 import styles from '../Estilo';
 
 
-export default function Home({ navigation, route }) {
+export default function Home_logado ({ navigation, route }) {
+
+
   const [data, setData] = useState([]);
-  const [latitude, setLatitude] = useState();
-  const [longitude, setLongitude] = useState();
   const [pagina, setPagina] = useState(1);
   const [anuncio_pagina, setAnuncio_pagina] = useState(1);
   const [loadin, setLoadin] = useState(false);
   const [logogin, setLogogin] = useState(false);
+  const [id_anunciante, setId_anunciante] = useState(false);
   const [toktok, setToktok] = useState(false);
-  const[logout,setLogout]=useState(route.params?.latitude)
-  console.log('pagina  home') 
-
+  const [avatar, setAvatar] = useState(false);
+  const [tipo_negocio, setTipo_negocio] = useState(false);
+  const[logout,setLogout]=useState(route.params?.logout)
+  console.log('pagina  home')    
  
   useEffect(() => {
+ 
+    async function dados_usuario  ()  {
+      /////chamar codido usuario unico//////
+      var id=await AsyncStorage.getItem('ID')
+      if(id){ setId_anunciante(id)}
+      var avar= await AsyncStorage.getItem('AVATAR')
+      if(avar){ setAvatar(avar)}
+      var tipo_negocio= await AsyncStorage.getItem('TIPO_NOGOCIO')
+      if(tipo_negocio){
+        if(tipo_negocio==='Automoveis'){
 
+          setTipo_negocio('Automovel')
+         }
+       
+         if(tipo_negocio==='Produto'){
+       
+          setTipo_negocio( 'Cadastro_produto')
+         }
+         if(tipo_negocio==='Local'){
+       
+          setTipo_negocio( 'Local')
+         }
+          if(tipo_negocio==='Imovel'){
+       
+          setTipo_negocio( 'Imovel')
+         }
+         
+        
+        
+        
+        
+       }
    
+    }
+  
+    dados_usuario()
+
 
     getProdutos()
   
     
   }, []);
-
- /// console.log(tor); 
-
 
  
  
@@ -38,7 +72,7 @@ export default function Home({ navigation, route }) {
     if (loadin) return;
 
     setLoadin(true);
-    setAnuncio_pagina(21)
+    setAnuncio_pagina(1)
     await fetch("https://anuncio360.com/projeto/exibir.php?pagina=" + pagina)
       .then((response) => response.json())
       .then((responseJson) => (
@@ -52,16 +86,7 @@ export default function Home({ navigation, route }) {
     setPagina(pagina + 1);
 
     //console.log(data);
-  }
- 
- 
-     
-  
-
-
-
-
-
+  }  
   const Item = ({ titulo, id, preco, descricao, estado, url, oi }) => (
 
     <>
@@ -135,23 +160,25 @@ export default function Home({ navigation, route }) {
 
       <View style={styles.topo1} >
         <Image
-          source={require('../../asset/logo_50.png')}
+         source={  {uri: avatar ? avatar:'https://d33wubrfki0l68.cloudfront.net/554c3b0e09cf167f0281fda839a5433f2040b349/ecfc9/img/header_logo.svg' }}
           resizeMode='cover'
           style={styles.head} />
       </View>
-      <View style={styles.topo2} >
+      <View style={styles.topo2_login} >
         <Text style={styles.textologo}>Anuncio360.com</Text>
       </View>
-
-      < View style={styles.topo3} >
-<FontAwesome.Button onPress={() =>  navigation.navigate('Login') } name="plus-circle" margin='2%' size={22} color="#42555e" backgroundColor="#9e9e9e00" >
-  <Text style={styles.fonteadicionar} ></Text>
+     
+      < View style={styles.topo3_login} >
+<FontAwesome.Button onPress={() =>navigation.navigate('Sobre', {id_anunciante:id_anunciante}) } name="plus-circle" margin='2%' size={29} color="#42555e" backgroundColor="#9e9e9e00" >
 </FontAwesome.Button>
 </View>
       
-     
+< View style={styles.topo3_login} >
+<FontAwesome.Button onPress={() =>navigation.navigate('Configuracao') } name="cogs" margin='2%' size={20} color="#42555e" backgroundColor="#9e9e9e00" >
+          <Text style={styles.fonteadicionar} > </Text>
+        </FontAwesome.Button>
+      </View>
     </View>
- 
     <SafeAreaView style={styles.container}>
       <FlatList
         data={data}

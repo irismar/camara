@@ -55,7 +55,7 @@ export default function Produto( {navigation, route}) {
 
     function ir_para_foto(){
           // navigation.reset( { index:0, routes:[{name:"Sobre"}]})
-       navigation.navigate('Sobre',{cod:'989r49ejdfdUI873'})
+       navigation.navigate('Sobre',{ID:route.params?.ID})
     }
 
    
@@ -66,7 +66,7 @@ export default function Produto( {navigation, route}) {
     
       <View style={{ flex: 1, alignItems: 'left', justifyContent: 'top' }}>
          
-     
+      <Text>eu sou id do usurio{route.params?.ID}</Text>
     
      <Input  placeholder="Nome Produto" leftIcon={{ type: 'font-awesome', name: 'archive' }}
      onChangeText={value =>setNome(value) } /> 

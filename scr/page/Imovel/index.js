@@ -15,3 +15,6 @@ export default function Imovel( {navigation, route}) {
       </View>
     );
   }
+
+
+ ///// "pk.eyJ1Ijoic21peWFrYXdhIiwiYSI6ImNqcGM0d3U4bTB6dWwzcW04ZHRsbHl0ZWoifQ.X9cvdajtPbs9JDMG-CMDsA";

@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import AppLoading from 'expo-app-loading';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Routes from './scr/page/router';
 
 import {
@@ -18,6 +18,8 @@ import {
 
 
 export default function App( ) {
+
+ 
 
   let [fontsLoaded] = useFonts({
     Ubuntu_300Light,
