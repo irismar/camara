@@ -315,6 +315,71 @@ enviar(foto_salvar_16)
               await AsyncStorage.removeItem('FOTO_SALVAR_16');
              }
 //////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+var foto_salvar_17=await AsyncStorage.getItem('FOTO_SALVAR_17');
+if(foto_salvar_17){
+setFoto_processo('17')
+enviar(foto_salvar_17) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_17');
+             }
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+var foto_salvar_18=await AsyncStorage.getItem('FOTO_SALVAR_18');
+if(foto_salvar_17){
+setFoto_processo('17')
+enviar(foto_salvar_17) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_17');
+             }
+//////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////
+var foto_salvar_18=await AsyncStorage.getItem('FOTO_SALVAR_18');
+if(foto_salvar_18){
+setFoto_processo('18')
+enviar(foto_salvar_18) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_18');
+             } 
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+var foto_salvar_19=await AsyncStorage.getItem('FOTO_SALVAR_16');
+if(foto_salvar_19){
+setFoto_processo('9')
+enviar(foto_salvar_16) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_16');
+             }
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+var foto_salvar_16=await AsyncStorage.getItem('FOTO_SALVAR_16');
+if(foto_salvar_16){
+setFoto_processo('16')
+enviar(foto_salvar_16) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_16');
+             }
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+var foto_salvar_16=await AsyncStorage.getItem('FOTO_SALVAR_16');
+if(foto_salvar_16){
+setFoto_processo('16')
+enviar(foto_salvar_16) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_16');
+             }
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+var foto_salvar_16=await AsyncStorage.getItem('FOTO_SALVAR_16');
+if(foto_salvar_16){
+setFoto_processo('16')
+enviar(foto_salvar_16) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_16');
+             }
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+var foto_salvar_16=await AsyncStorage.getItem('FOTO_SALVAR_16');
+if(foto_salvar_16){
+setFoto_processo('16')
+enviar(foto_salvar_16) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_16');
+             }
+//////////////////////////////////////////////////////////////
 setJanela(true)
 //////////////////////////////////////////////////////////////
   }
