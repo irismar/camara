@@ -20,12 +20,7 @@ export default function Porta( {navigation, route}) {
   useEffect(() => {
 
       
-    
-    lat()
-  
-
-   //// token   () 
-  }, []);
+   
   async function lat   ()  {
 
     let { status } = await Location.requestForegroundPermissionsAsync();
@@ -58,6 +53,13 @@ console.log(tor)
 
 
   } }  }
+ 
+  lat()
+  
+
+  //// token   () 
+ }, []);
+
 
  
 

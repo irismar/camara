@@ -49,13 +49,13 @@ export default function Cadastro( {navigation, route}) {
 
       
             
-      <FontAwesome.Button onPress={()=>navigation.navigate('Imovel', {tipo_anuncio:'Imovel'}) } style={styles.button_branco_300}name="home"  size={22} color="#ffffff"  >
+      <FontAwesome.Button onPress={()=>navigation.navigate('Imovel', {tipo_anuncio:'Imovel'}) } style={styles.button_branco_300}name="home"  size={22}  >
       <Text  style={styles.font_branca} >Imovel </Text>
       </FontAwesome.Button>
 
       <TouchableOpacity  style={styles.button2} >
       </TouchableOpacity>
-      <FontAwesome.Button onPress={()=>navigation.navigate('Automovel', {tipo_anuncio:'Automovel'}) } style={styles.button_branco_300} name="car" size={22} color="#ffffff"  >
+      <FontAwesome.Button onPress={()=>navigation.navigate('Automovel', {tipo_anuncio:'Automovel'}) } style={styles.button_branco_300} name="car" size={22}   >
       <Text  style={styles.font_branca} >Automovel </Text>
       </FontAwesome.Button>
       

@@ -85,7 +85,7 @@ console.log(produto)
 
    
       <>
-         <StatusBar backgroundColor="#000" translucent={true} />
+     
          <View style={{flexDirection:'row'}} >
 
 <View style={styles.topo1} >
@@ -114,7 +114,7 @@ console.log(produto)
 </View>
          
            <KeyboardAvoidingView  style={styles.container}
-      behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={90}   >
+      behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={9}   >
       <ScrollView>     
    
 <TouchableOpacity  style={styles.button} >
@@ -130,7 +130,7 @@ console.log(produto)
 
     
        <View  >
-  <RadioButton.Group   color='#ffffff'  onValueChange={value => setCategoria(value)} value={categoria}>
+  <RadioButton.Group   onValueChange={value => setCategoria(value)} value={categoria}>
         
       <Text style={styles.label}>Categotia</Text>
       <RadioButton.Item   style={styles.button5} label="Roupas" labelStyle={styles.font_branca}  value="Roupas" />
@@ -149,7 +149,7 @@ console.log(produto)
 <View  >
   <RadioButton.Group   color='#ffffff'  onValueChange={value => setEstado(value)} value={estado}>
         
-      <Text style={styles.label}>Estado do Produto{route.params?.id_anunciante}</Text>
+      <Text style={styles.label}>Estado do Produto</Text>
       <RadioButton.Item   style={styles.button5} label="Novo" labelStyle={styles.font_branca}  value="Novo" />
       <RadioButton.Item  style={styles.button5} label="Usado" labelStyle={styles.font_branca}  value="Usado" />
     </RadioButton.Group>
@@ -159,10 +159,11 @@ console.log(produto)
 
 
 
-     <View >
+     <View   >
     <Text style={styles.label} leftIcon={{ type: 'font-awesome', name: 'id-badge' }} > Preço</Text>
-    <TextInputMask  style={styles.button5}   
+    <TextInputMask      style={styles.button5 } style={styles.font_verde }
   type={'money'}
+  placeholder='R$'
   options={{
     precision: 2,
     separator: ',',
@@ -192,7 +193,7 @@ console.log(produto)
      <View >
 
      
-      <FontAwesome.Button  onPress={()=> gravar()} style={styles.button_salvar_cadastro} name="save" size={20}    color="#ffffff" backgroundColor="#feffff" >
+      <FontAwesome.Button  onPress={()=> gravar()} style={styles.button4} name="save" size={20}   >
       <Text  style={styles.font_branca} >Salvar </Text>
       </FontAwesome.Button>
 

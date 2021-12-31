@@ -1,7 +1,8 @@
-
+import { Dimensions } from 'react-native'
 import { Center } from 'native-base';
-import {  StyleSheet, Text, StatusBar,TouchableOpacity } from 'react-native';
+import {  StyleSheet} from 'react-native';
 
+const cor_botoa='#673ab7e0';
 const styles = StyleSheet.create({
 
     container: {
@@ -82,15 +83,15 @@ const styles = StyleSheet.create({
                   
     input_texarea:{
       height:150,
-      width:'90%',
+      width: Dimensions.get('window').width/1.03,
       borderRadius:6,
-      marginLeft:'4%',
+      marginLeft:'1%',
       marginTop:'6%',
       color:'#000000', 
       fontSize:16,
       alignItems:'center',
       justifyContent:'center',
-       
+      marginBottom:40, 
       borderColor:'#cacdcfcc',
       borderWidth:1,
       backgroundColor:'#ebedef',
@@ -128,9 +129,9 @@ const styles = StyleSheet.create({
           
             },
       button4: {  
-                backgroundColor:'#0095f6', 
+        backgroundColor:cor_botoa, 
                 height:50,
-                width:'100%',
+                width: Dimensions.get('window').width/1,
                 alignItems: 'center',
                 justifyContent:'center',
                 borderColor:'#ebedef',
@@ -142,7 +143,7 @@ const styles = StyleSheet.create({
                   fontSize:18,
                   color:'#ffffff', 
                   fontWeight:'900',
-                  backgroundColor:'#0095f6', 
+                  backgroundColor:'#3f51b5',
                   height:50,
                   marginTop:10,
                   width:'100%',
@@ -151,17 +152,62 @@ const styles = StyleSheet.create({
                   borderColor:'#ebedef',
                   color:'#ffffff',
                 
-                  },          
-       button_branco_300: {  
-                  backgroundColor:'#0095f6', 
-                  height:50,
-                  width:350,
+                  },  
+                  topo_foto1: {
+                    width:'20%',
+                    marginTop:5,             
+                 
+                    }, 
+                    
+                  topo_foto2: {
+                      width:'58%',
+                      marginTop:5,             
+                   
+                      },  
+   button_foto_Voltar: {  
+                  fontFamily:'Ubuntu_700Bold',
                   alignItems: 'center',
                   justifyContent:'center',
-                  borderColor:'#ebedef',
-                  borderRadius:10,
+                  fontSize:18,
+                  color:'#ffffff47', 
+                  fontWeight:'900',
+                  backgroundColor:'#959ca347', 
+                  height:50,
+                  margin:5,
+                  width:'100%',
+                  alignItems: 'center',
+                  justifyContent:'center',
                 
-                  }, 
+                
+                  },                      
+       button_branco_300: {  
+        backgroundColor:cor_botoa, 
+                  height:50,
+                  width: Dimensions.get('window').width/1.4,
+                  alignItems: 'center',
+                  justifyContent:'center', 
+       },
+
+      button_branco_100: {  
+      
+                    backgroundColor:cor_botoa, 
+                    height:50,
+                    width: Dimensions.get('window').width/2.199,
+                    alignItems: 'center',
+                    justifyContent:'center',
+                    marginLeft:10,
+                   
+                  
+                    }, 
+      font_branca_16: {  
+                      fontFamily:'Ubuntu_700Bold',
+                      alignItems: 'center',
+                      justifyContent:'center',
+                      fontSize:16,
+                      color:'#ffffff', 
+                      fontWeight:'900',
+                    
+                      },                           
       button_salvar_cadastro: {  
                     backgroundColor:'#0095f6', 
                     height:50,
@@ -267,16 +313,20 @@ const styles = StyleSheet.create({
                       } 
                     ,                
      head:{
-                     width:80,
+                     width:50,
                      marginTop:'6%',
                     marginLeft:8,
                      height:50,
                      resizeMode: 'cover',
-                     borderTopLeftRadius:20,
-                     borderTopRightRadius:20,
-                     borderBottomLeftRadius:20,
-                     borderBottomRightRadius:20,
+                    
       },
+      icone_imput:{ width:20,
+        marginTop:12,
+       marginRight:2,
+       marginLeft:10,
+        height:20,
+        resizeMode: 'cover',},
+
       iconlogin:{
         width:150,
         alignItems: 'center',
@@ -358,6 +408,32 @@ const styles = StyleSheet.create({
     
       height:300,
     },
-  });
+
+  
+
+  camera: {
+    flex: 1,
+    height:600,
+  },
+ font_verde: {  
+          fontFamily:'Ubuntu_700Bold', 
+          alignItems: 'center',
+          justifyContent:'center',
+          fontSize:19,
+          color:'#009688', 
+          fontWeight:'400',
+        
+          },
+ font_Vermelha: {  
+            fontFamily:'Ubuntu_300Light',
+            alignItems: 'center',
+            justifyContent:'center',
+            fontSize:19,
+            color:'#e91e63', 
+            fontWeight:'400',
+          
+ }
+});  
+
 
   export default styles;

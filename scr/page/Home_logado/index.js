@@ -169,7 +169,7 @@ export default function Home_logado ({ navigation, route }) {
       </View>
      
       < View style={styles.topo3_login} >
-<FontAwesome.Button onPress={() =>navigation.navigate('Sobre', {id_anunciante:id_anunciante}) } name="plus-circle" margin='2%' size={29} color="#42555e" backgroundColor="#9e9e9e00" >
+<FontAwesome.Button onPress={() =>navigation.navigate(tipo_negocio, {id_anunciante:id_anunciante}) } name="plus-circle" margin='2%' size={29} color="#42555e" backgroundColor="#9e9e9e00" >
 </FontAwesome.Button>
 </View>
       

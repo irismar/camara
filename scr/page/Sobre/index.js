@@ -6,13 +6,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DeviceMotion } from 'expo-sensors';
 import * as Location from 'expo-location';
 import * as MediaLibrary from 'expo-media-library';
-
+import { ActivityIndicator } from 'react-native-paper';
+import styles from '../Estilo';
 export default function Sobre ( {route, navigation}) {
 const[id_anunciante,setId_anunciante]=useState(route.params?.id_anunciante)
 const[id_anuncio,setId_anuncio]=useState(route.params?.id_anuncio)
-
+const[foto_processo,setFoto_processo]=useState(false)
+const[load,setLoad]=useState(false)
 const[captura, setCapitura]=useState(false)
-const[modal, setModal]=useState(false)
+const[janela, setJanela]=useState(false)
 const [latitude, setLatitude] = useState(0);
 const [longitude, setLongitude] = useState(0);
 const [location, setLocation] = useState(null);
@@ -29,22 +31,17 @@ const [status, requestPermission] = MediaLibrary.usePermissions();
   const camRef=useRef(null);
   const [capturedPhoto, setCapturedPhoto]=useState(null);
   const [open, setOpen]=useState(false)
-  const [data, setData] = useState({    t: 0,    y: 0,    z: 0,
-  });
+  const [data, setData] = useState({    t: 0,    y: 0,    z: 0,  });
   const [subscription, setSubscription] = useState(null);
-
   const [fotos, setFotos] = useState(0);
   const [grau, setGrau] = useState(null);
   const [grau360, setGrau360] = useState(0);
-
   const [angulo360, setAngulo360]=useState(0);  
-
   const _subscribe = () => {
-    setSubscription(
-     
-      DeviceMotion .addListener(({ rotation }) => {   
-     // Gyroscope.addListener(gyroscopeData => {
-        setData(rotation);     
+ setSubscription(     
+    DeviceMotion .addListener(({ rotation }) => {   
+    // Gyroscope.addListener(gyroscopeData => {
+    setData(rotation);     
            })    );  };
   const _unsubscribe = () => {
     subscription && subscription.remove();
@@ -97,19 +94,18 @@ const [status, requestPermission] = MediaLibrary.usePermissions();
   
   
   //console.log(location);
-   takePicture=async () =>{  
+  async function takePicture(data) {
   if(camRef){    
     const data=await camRef.current.takePictureAsync();
     //console.log (data);      
     setCapturedPhoto(data.uri); 
     salvar_foto() 
     /////uploadImage();
+    console.log(capturedPhoto)
   }  };
 
-  salvar_foto = async () => { 
-    if(fotos==1){ await AsyncStorage.setItem('FOTO_SALVAR_1', capturedPhoto); 
-    setModal(true)
-    enviar_fotos_para_server ()}
+  async function salvar_foto  ()  { 
+    if(fotos==1){ await AsyncStorage.setItem('FOTO_SALVAR_1', capturedPhoto)}
     if(fotos==2){ await AsyncStorage.setItem('FOTO_SALVAR_2', capturedPhoto)}
     if(fotos==3){ await AsyncStorage.setItem('FOTO_SALVAR_3', capturedPhoto)}
     if(fotos==4){ await AsyncStorage.setItem('FOTO_SALVAR_4', capturedPhoto)}
@@ -159,30 +155,100 @@ const [status, requestPermission] = MediaLibrary.usePermissions();
     if(fotos==37){ await AsyncStorage.setItem('FOTO_SALVAR_37', capturedPhoto)}
     if(fotos==38){ await AsyncStorage.setItem('FOTO_SALVAR_38', capturedPhoto)}
     if(fotos==39){ await AsyncStorage.setItem('FOTO_SALVAR_39', capturedPhoto)}
-    if(fotos==40){ await AsyncStorage.setItem('FOTO_SALVAR_40', capturedPhoto)  
-    ///////////////////apos a ultima foto mandar salvar mudata tela
-   
-
-  }   }
-
-  /////ler dados salvar na nuvem
-
-
+    if(fotos==40){ await AsyncStorage.setItem('FOTO_SALVAR_40', capturedPhoto)}
+    if(fotos==41){ await AsyncStorage.setItem('FOTO_SALVAR_41', capturedPhoto)}
+    if(fotos==42){ await AsyncStorage.setItem('FOTO_SALVAR_42', capturedPhoto)}
+    if(fotos==43){ await AsyncStorage.setItem('FOTO_SALVAR_43', capturedPhoto)}
+    if(fotos==44){ await AsyncStorage.setItem('FOTO_SALVAR_44', capturedPhoto)}
+    if(fotos==45){ await AsyncStorage.setItem('FOTO_SALVAR_45', capturedPhoto)}
+    if(fotos==46){ await AsyncStorage.setItem('FOTO_SALVAR_46', capturedPhoto)}
+    if(fotos==47){ await AsyncStorage.setItem('FOTO_SALVAR_47', capturedPhoto)}
+    if(fotos==48){ await AsyncStorage.setItem('FOTO_SALVAR_48', capturedPhoto)}
+    if(fotos==49){ await AsyncStorage.setItem('FOTO_SALVAR_49', capturedPhoto)}
+    if(fotos==50){ await AsyncStorage.setItem('FOTO_SALVAR_50', capturedPhoto)}
+    if(fotos==51){ await AsyncStorage.setItem('FOTO_SALVAR_51', capturedPhoto)}
+    if(fotos==52){ await AsyncStorage.setItem('FOTO_SALVAR_52', capturedPhoto)}
+    if(fotos==53){ await AsyncStorage.setItem('FOTO_SALVAR_53', capturedPhoto)}
+    if(fotos==54){ await AsyncStorage.setItem('FOTO_SALVAR_54', capturedPhoto)}
+    if(fotos==55){ await AsyncStorage.setItem('FOTO_SALVAR_55', capturedPhoto)}
+    if(fotos==56){ await AsyncStorage.setItem('FOTO_SALVAR_56', capturedPhoto)}
+    if(fotos==57){ await AsyncStorage.setItem('FOTO_SALVAR_57', capturedPhoto)}
+    if(fotos==58){ await AsyncStorage.setItem('FOTO_SALVAR_58', capturedPhoto)}
+    if(fotos==59){ await AsyncStorage.setItem('FOTO_SALVAR_59', capturedPhoto)}
+    if(fotos==60){ await AsyncStorage.setItem('FOTO_SALVAR_60', capturedPhoto)}
+    if(fotos==61){ await AsyncStorage.setItem('FOTO_SALVAR_61', capturedPhoto)}
+    if(fotos==62){ await AsyncStorage.setItem('FOTO_SALVAR_62', capturedPhoto)}
+    if(fotos==63){ await AsyncStorage.setItem('FOTO_SALVAR_63', capturedPhoto)}
+    if(fotos==64){ await AsyncStorage.setItem('FOTO_SALVAR_64', capturedPhoto)}
+    if(fotos==65){ await AsyncStorage.setItem('FOTO_SALVAR_65', capturedPhoto)}
+    if(fotos==66){ await AsyncStorage.setItem('FOTO_SALVAR_66', capturedPhoto)}
+    if(fotos==67){ await AsyncStorage.setItem('FOTO_SALVAR_67', capturedPhoto)}
+    if(fotos==68){ await AsyncStorage.setItem('FOTO_SALVAR_68', capturedPhoto)}
+    if(fotos==69){ await AsyncStorage.setItem('FOTO_SALVAR_69', capturedPhoto)}
+    if(fotos==70){ await AsyncStorage.setItem('FOTO_SALVAR_70', capturedPhoto)}
+    if(fotos==71){ await AsyncStorage.setItem('FOTO_SALVAR_71', capturedPhoto)}
+    if(fotos==72){ await AsyncStorage.setItem('FOTO_SALVAR_72', capturedPhoto)}
+     
+    }
   async function  enviar_fotos_para_server (){
-  foto_salvar_1=await AsyncStorage.getItem('FOTO_SALVAR_1');if(foto_salvar_1){ enviar(foto_salvar_1) }
+  setLoad(true)
+  
+       var foto_salvar_1=await AsyncStorage.getItem('FOTO_SALVAR_1');
+        if(foto_salvar_1){
+    setFoto_processo('1')
+    enviar(foto_salvar_1) 
+                      await AsyncStorage.removeItem('FOTO_SALVAR_1');
+                     }
+    //////////////////////////////////////////////////////////////
+       var foto_salvar_2=await AsyncStorage.getItem('FOTO_SALVAR_2');
+    if(foto_salvar_2){
+setFoto_processo('2')
+enviar(foto_salvar_2) 
+                     await AsyncStorage.removeItem('FOTO_SALVAR_2');
+                 }
+//////////////////////////////////////////////////////////////
+      var foto_salvar_3=await AsyncStorage.getItem('FOTO_SALVAR_3');
+    if(foto_salvar_3){
+   setFoto_processo('3')
+   enviar(foto_salvar_3) 
+                    await AsyncStorage.removeItem('FOTO_SALVAR_3');
+             }
+//////////////////////////////////////////////////////////////
+      var foto_salvar_1=await AsyncStorage.getItem('FOTO_SALVAR_4');
+if(foto_salvar_4){
+setFoto_processo('4')
+enviar(foto_salvar_4) 
+                   await AsyncStorage.removeItem('FOTO_SALVAR_4');
+             }
+//////////////////////////////////////////////////////////////
+var foto_salvar_5=await AsyncStorage.getItem('FOTO_SALVAR_5');
+if(foto_salvar_5){
+setFoto_processo('5')
+enviar(foto_salvar_5) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_5');
+             }
+//////////////////////////////////////////////////////////////
+var foto_salvar_6=await AsyncStorage.getItem('FOTO_SALVAR_6');
+if(foto_salvar_6){
+setFoto_processo('6')
+enviar(foto_salvar_6) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_6');
+             }
+//////////////////////////////////////////////////////////////                 
 
-
+//////////////////////////////////////////////////////////////
   }
 
 
 
 async function enviar(data) { 
-  
+
   /// envia para algum
-  const asset= await MediaLibrary.createAssetAsync(capturedPhoto);  
+  /////const asset= await MediaLibrary.createAssetAsync(capturedPhoto);  
   let formData = new FormData();
   formData.append('photo', { uri:data, name: data, type });
-  formData.append('codigo', {name:id_anunciante });
+  formData.append('id_anuncio', {name:id_anunciante });
+  formData.append('id_anunciaante', {name:id_anunciante });
    await fetch('https://anuncio360.com/projeto/foto.php', {
      method: 'POST',
      body: formData,
@@ -190,16 +256,17 @@ async function enviar(data) {
      'content-type': 'multipart/form-data',
      },
      
-   }   )
+   }  
+    )
 
-
-
-  
+    setFoto_processo(false)
+    setLoad(false)
+    setJanela(false)
  
-   
+/////fim da dunção   
 }
 
-start = async () => {
+async function start ()  {
   setCapitura(true)
   setGrau(angulo); 
   setFotos(0);
@@ -208,7 +275,7 @@ start = async () => {
 
 }
 
-stop = async () => {
+async function stop  () {
   setCapitura(false)
   setGrau(false); 
   setFotos(0);
@@ -217,7 +284,7 @@ stop = async () => {
 
 }
 
-transformar  = async () => {
+async function transformar  ()  {
   setAngulo360(360); 
  // setGrau360(360);
 }
@@ -392,7 +459,42 @@ if (captura  ) {
     <SafeAreaView style={styles.container}>
    <View >
  
-       
+   <Modal  animationType="slide"
+   
+   visible={janela}>
+<View style={{alignItems:'center',  flex: 1}} >
+     
+<View style={{alignItems:'center', marginTop:200, flexDirection:'row'}} >
+     
+     <View  >
+     <FontAwesome.Button onPress={()=>enviar_fotos_para_server()} style={styles.button_branco_100} name="upload" size={20}    backgroundColor="#feffff" >
+     <Text  style={styles.font_branca_16} >Enviar fotos  </Text>
+     </FontAwesome.Button>    
+     </View>
+     <View>     
+     <FontAwesome.Button onPress={()=>setJanela(false)} style={styles.button_branco_100} name="times-circle" size={20}     backgroundColor="#feffff" >
+     <Text  style={styles.font_branca_16} >Cancelar  </Text>    
+     </FontAwesome.Button>     
+     </View>
+     </View>
+
+     <View style={{alignItems:'center', marginTop:100,    flexDirection:'row'}} >
+     <Text>   Aguardando  ..... {foto_processo}</Text>
+     </View>
+     <View style={{alignItems:'center', marginTop:100,    flexDirection:'row'}} >
+     <ActivityIndicator animating={load}  size={42} color="#121212" />
+     </View>
+     
+ </View> 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   </Modal> 
      
       
     </View>
@@ -402,30 +504,31 @@ if (captura  ) {
 
       <View style={{flexDirection:'row'}} >
     
+     
 
 
 
-
-      <View style={styles.topo3} >                    
-             <FontAwesome.Button  style={styles.button3}  onPress={() => navigation.goBack()} name="arrow-left" size={15} color="#ffffff47"   backgroundColor="#959ca347" >
+      <View style={styles.topo_foto1} >                        
+             <FontAwesome.Button  style={styles. button_foto_Voltar}  onPress={() => navigation.goBack()} name="arrow-left" size={15} color="#ffffff47"   backgroundColor="#959ca347" >
             
              </FontAwesome.Button> 
       </View>
         
          
-      <View style={styles.topo2} >         
-           <FontAwesome.Button  onPress={() =>{ stop(); }} style={styles.button3} name="image" size={15}color="#ffffff47"  backgroundColor="#9e9e9e14" >
-           <Text style={styles.font_Vermelha}>Desativar Capitura</Text>     
+      <View style={styles.topo_foto2} >            
+           <FontAwesome.Button  onPress={() =>{ stop(); }} style={styles. button_foto_Voltar} name="image" size={15}color="#ffffff47" backgroundColor="#959ca347">
+           <Text style={styles.font_branca}>Desativar Capitura</Text>     
           </FontAwesome.Button>
       </View>
          
-      <View style={styles.topo3} >                    
-             <FontAwesome.Button  style={styles.button3} name="image" size={15} color="#3a3b3c47"  backgroundColor="#959ca347" >
-             <Text style={styles.font3}>{fotos ? fotos : '0'} </Text>
+      <View style={styles.topo_foto1} >                          
+             <FontAwesome.Button  style={styles.button_foto_Voltar} name="image" size={15} color="#ffffff47" backgroundColor="#959ca347">
+             <Text style={styles.font_branca}>{fotos ? fotos : '0'} </Text>
              </FontAwesome.Button> 
       </View>
+     
       </View>   
-      
+  
       
       </Camera>  
     </SafeAreaView>  );
@@ -434,170 +537,48 @@ if (captura  ) {
 }else {
 
   return (
+    <>
     <SafeAreaView style={styles.container}>
-   <View >
- 
-       
-     
-      
-    </View>
+  
       <Camera style={styles.camera}
       ref={camRef}
       type={type}>
 
       <View style={{flexDirection:'row'}} >
 
-      <View style={styles.topo3} >                    
-             <FontAwesome.Button  style={styles.button3}  onPress={() => navigation.goBack()} name="arrow-left" size={15} color="#ffffff47"   backgroundColor="#959ca347" >
+      <View style={styles.topo_foto1} >                        
+             <FontAwesome.Button  style={styles. button_foto_Voltar}  onPress={() => navigation.goBack()} name="arrow-left" size={15} color="#ffffff47"   backgroundColor="#959ca347" >
             
              </FontAwesome.Button> 
       </View>
         
          
-      <View style={styles.topo2} >         
-           <FontAwesome.Button  onPress={() =>{ start(); }} style={styles.button3} name="image" size={15}color="#ffffff47"  backgroundColor="#9e9e9e14" >
-           <Text style={styles.font_verde}>{route.params.id_anuncio}{route.params.id_anunciante}</Text>     
+      <View style={styles.topo_foto2} >            
+           <FontAwesome.Button  onPress={() =>{ start(); }} style={styles. button_foto_Voltar} name="image" size={15}color="#ffffff47" backgroundColor="#959ca347">
+           <Text style={styles.font_branca}>Ativar Captura</Text>     
           </FontAwesome.Button>
       </View>
          
-      <View style={styles.topo3} >                    
-             <FontAwesome.Button  style={styles.button3} name="image" size={15} color="#3a3b3c47"  backgroundColor="#959ca347" >
-             <Text style={styles.font3}>{fotos ? fotos : '0'} </Text>
+      <View style={styles.topo_foto1} >                          
+             <FontAwesome.Button  style={styles.button_foto_Voltar} name="image" size={15} color="#ffffff47" backgroundColor="#959ca347">
+             <Text style={styles.font_branca}>{fotos ? fotos : '0'} </Text>
              </FontAwesome.Button> 
       </View>
       </View>   
       
       
       </Camera>  
-    </SafeAreaView>  );
+    </SafeAreaView> 
+    
+    </>
+    );
 }
+
+
+
+
   
   }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  camera: {
-    flex: 1,
-    height:600,
-  },
-  buttonContainer: {
-    flex: 0.5,
-    backgroundColor: 'transparent',
-    flexDirection: 'row',
-    margin: 20,
-  },
-  button: {  
-    fontFamily:'Ubuntu_300Light',
-    backgroundColor:'#d9d7d785',    
-    alignItems: 'center',
-    justifyContent:'center',
-    margin:1,
-    height:30,
-    },
-    text: {
-    fontSize: 18,
-    color: '#e91e63',
-  },
-  button3: {  
-    color:'#ffffff47', 
-    
-      height:50,
-     
-      alignItems: 'center',
-      justifyContent:'center',
-    
-      },
-  font: {  
-    fontFamily:'Ubuntu_300Light',
-    alignItems: 'center',
-    justifyContent:'center',
-    fontSize:22,
-    color:'#3f51b5', 
-    fontWeight:'400',
-  
-    },
-    font2: {  
-      fontFamily:'Ubuntu_300Light',
-      alignItems: 'center',
-      justifyContent:'center',
-      fontSize:16,
-      color:'#3f51b5', 
-      fontWeight:'400',
-    
-      }, 
-
-      font3: {  
-        fontFamily:'Ubuntu_300Light',
-        alignItems: 'center',
-        justifyContent:'center',
-        fontSize:19,
-        color:'#fffffffa', 
-        fontWeight:'400',
-      
-        },
-        font_verde: {  
-          fontFamily:'Ubuntu_700Bold', 
-          alignItems: 'center',
-          justifyContent:'center',
-          fontSize:19,
-          color:'#009688', 
-          fontWeight:'400',
-        
-          },
-          font_Vermelha: {  
-            fontFamily:'Ubuntu_300Light',
-            alignItems: 'center',
-            justifyContent:'center',
-            fontSize:19,
-            color:'#e91e63', 
-            fontWeight:'400',
-          
-            },   
-    topo1: {
-      width:'20%',
-       marginTop:'6%',
-    
-      },
-      topo2: {
-        width:'60%',
-         marginTop:5,
-      
-        },
-    
-        topo3: {
-          width:'20%',
-           margin:5,
-        
-          }  
-      
-      ,
-      textologo: {
-        fontFamily:'Ubuntu_300Light',
-       flexDirection: 'row', 
-         marginTop:'10%',
-       fontSize:22,
-       textAlign: 'left',
-       marginLeft:'-2%',
-        } 
-      ,
-      
-      head:{
-       width:50,
-       marginTop:'6%',
-       marginLeft:10,  
-       height:50,
-      },
-      fonteadicionar: {  
-        color:'#4630eb', 
-        fontSize:12,
-        
-         
-        
-          },  
-});
 
 
 

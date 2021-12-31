@@ -126,8 +126,12 @@ function Routes( ) {
               component={Local}
               options={{headerShown:false}}
         />     
-     
-       
+      <Stack.Screen
+              name="Automovel"
+              component={Automovel}
+              options={{headerShown:false}}
+        /> 
+  
 
         
       
