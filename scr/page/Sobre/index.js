@@ -296,33 +296,26 @@ var foto_salvar_14=await AsyncStorage.getItem('FOTO_SALVAR_14');
 if(foto_salvar_14){
 setFoto_processo('14')
 enviar(foto_salvar_14) 
-              await AsyncStorage.removeItem('FOTO_SALVAR_6');
+              await AsyncStorage.removeItem('FOTO_SALVAR_14');
              }
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-var foto_salvar_6=await AsyncStorage.getItem('FOTO_SALVAR_6');
-if(foto_salvar_6){
-setFoto_processo('6')
-enviar(foto_salvar_6) 
-              await AsyncStorage.removeItem('FOTO_SALVAR_6');
+var foto_salvar_15=await AsyncStorage.getItem('FOTO_SALVAR_15');
+if(foto_salvar_15){
+setFoto_processo('15')
+enviar(foto_salvar_15) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_15');
              }
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-var foto_salvar_6=await AsyncStorage.getItem('FOTO_SALVAR_6');
-if(foto_salvar_6){
-setFoto_processo('6')
-enviar(foto_salvar_6) 
-              await AsyncStorage.removeItem('FOTO_SALVAR_6');
+var foto_salvar_16=await AsyncStorage.getItem('FOTO_SALVAR_16');
+if(foto_salvar_16){
+setFoto_processo('16')
+enviar(foto_salvar_16) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_16');
              }
 //////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////
-var foto_salvar_6=await AsyncStorage.getItem('FOTO_SALVAR_6');
-if(foto_salvar_6){
-setFoto_processo('6')
-enviar(foto_salvar_6) 
-              await AsyncStorage.removeItem('FOTO_SALVAR_6');
-             }
-//////////////////////////////////////////////////////////////
+setJanela(true)
 //////////////////////////////////////////////////////////////
   }
 
