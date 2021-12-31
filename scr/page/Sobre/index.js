@@ -110,7 +110,7 @@ const [status, requestPermission] = MediaLibrary.usePermissions();
     if(fotos==3){ await AsyncStorage.setItem('FOTO_SALVAR_3', capturedPhoto)}
     if(fotos==4){ await AsyncStorage.setItem('FOTO_SALVAR_4', capturedPhoto)}
     if(fotos==5){ await AsyncStorage.setItem('FOTO_SALVAR_5', capturedPhoto)}
-    if(fotos==6){ await AsyncStorage.setItem('FOTO_SALVAR_6', capturedPhoto)}
+    if(fotos==6){ await AsyncStorage.setItem('FOTO_SALVAR_6', capturedPhoto); setJanela(true)}
     if(fotos==7){ await AsyncStorage.setItem('FOTO_SALVAR_7', capturedPhoto)}
     if(fotos==8){ await AsyncStorage.setItem('FOTO_SALVAR_8', capturedPhoto)}
     if(fotos==9){ await AsyncStorage.setItem('FOTO_SALVAR_9', capturedPhoto)}
@@ -214,7 +214,7 @@ enviar(foto_salvar_2)
                     await AsyncStorage.removeItem('FOTO_SALVAR_3');
              }
 //////////////////////////////////////////////////////////////
-      var foto_salvar_1=await AsyncStorage.getItem('FOTO_SALVAR_4');
+      var foto_salvar_4=await AsyncStorage.getItem('FOTO_SALVAR_4');
 if(foto_salvar_4){
 setFoto_processo('4')
 enviar(foto_salvar_4) 
@@ -235,7 +235,94 @@ enviar(foto_salvar_6)
               await AsyncStorage.removeItem('FOTO_SALVAR_6');
              }
 //////////////////////////////////////////////////////////////                 
-
+//////////////////////////////////////////////////////////////
+var foto_salvar_7=await AsyncStorage.getItem('FOTO_SALVAR_7');
+if(foto_salvar_7){
+setFoto_processo('7')
+enviar(foto_salvar_7) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_7');
+             }
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+var foto_salvar_8=await AsyncStorage.getItem('FOTO_SALVAR_8');
+if(foto_salvar_8){
+setFoto_processo('8')
+enviar(foto_salvar_8) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_8');
+             }
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+var foto_salvar_9=await AsyncStorage.getItem('FOTO_SALVAR_9');
+if(foto_salvar_9){
+setFoto_processo('9')
+enviar(foto_salvar_9) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_9');
+             }
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+var foto_salvar_10=await AsyncStorage.getItem('FOTO_SALVAR_10');
+if(foto_salvar_10){
+setFoto_processo('10')
+enviar(foto_salvar_10) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_10');
+             }
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+var foto_salvar_11=await AsyncStorage.getItem('FOTO_SALVAR_11');
+if(foto_salvar_11){
+setFoto_processo('11')
+enviar(foto_salvar_11) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_11');
+             }
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+var foto_salvar_12=await AsyncStorage.getItem('FOTO_SALVAR_12');
+if(foto_salvar_12){
+setFoto_processo('12')
+enviar(foto_salvar_12) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_12');
+             }
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+var foto_salvar_13=await AsyncStorage.getItem('FOTO_SALVAR_13');
+if(foto_salvar_13){
+setFoto_processo('13')
+enviar(foto_salvar_13) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_13');
+             }
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+var foto_salvar_14=await AsyncStorage.getItem('FOTO_SALVAR_14');
+if(foto_salvar_14){
+setFoto_processo('14')
+enviar(foto_salvar_6) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_6');
+             }
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+var foto_salvar_6=await AsyncStorage.getItem('FOTO_SALVAR_6');
+if(foto_salvar_6){
+setFoto_processo('6')
+enviar(foto_salvar_6) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_6');
+             }
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+var foto_salvar_6=await AsyncStorage.getItem('FOTO_SALVAR_6');
+if(foto_salvar_6){
+setFoto_processo('6')
+enviar(foto_salvar_6) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_6');
+             }
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+var foto_salvar_6=await AsyncStorage.getItem('FOTO_SALVAR_6');
+if(foto_salvar_6){
+setFoto_processo('6')
+enviar(foto_salvar_6) 
+              await AsyncStorage.removeItem('FOTO_SALVAR_6');
+             }
+//////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
   }
 
@@ -247,8 +334,8 @@ async function enviar(data) {
   /////const asset= await MediaLibrary.createAssetAsync(capturedPhoto);  
   let formData = new FormData();
   formData.append('photo', { uri:data, name: data, type });
-  formData.append('id_anuncio', {name:id_anunciante });
-  formData.append('id_anunciaante', {name:id_anunciante });
+  formData.append('id_anuncio', {name:id_anuncio });
+  formData.append('id_anunciante', {name:id_anunciante });
    await fetch('https://anuncio360.com/projeto/foto.php', {
      method: 'POST',
      body: formData,
