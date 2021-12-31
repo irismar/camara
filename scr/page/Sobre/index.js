@@ -295,7 +295,7 @@ enviar(foto_salvar_13)
 var foto_salvar_14=await AsyncStorage.getItem('FOTO_SALVAR_14');
 if(foto_salvar_14){
 setFoto_processo('14')
-enviar(foto_salvar_6) 
+enviar(foto_salvar_14) 
               await AsyncStorage.removeItem('FOTO_SALVAR_6');
              }
 //////////////////////////////////////////////////////////////
