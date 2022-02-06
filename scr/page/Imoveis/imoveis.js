@@ -1,6 +1,6 @@
 import React, { useState, useEffect,useRef } from 'react';
 import { Button, Input, Text } from 'react-native-elements';
-import {Platform, Alert, KeyboardAvoidingView, StatusBar, TouchableOpacity,StyleSheet, Image, TextInput,  View, ScrollView,Select } from 'react-native';
+import { Alert, KeyboardAvoidingView, StatusBar, TouchableOpacity,StyleSheet, Image, TextInput,  View, ScrollView,Select } from 'react-native';
 import{FontAwesome} from '@expo/vector-icons';
 import { Picker  } from '@react-native-picker/picker';
 import { TextInputMask } from 'react-native-masked-text'
@@ -161,16 +161,26 @@ console.log(produto)
        </View>
 
 
+       <View  >
+  <RadioButton.Group   color='#ffffff'  onValueChange={value => setEstado(value)} value={estado}>
+        
+      <Text style={styles.label}>Tipo Negocio</Text>
+      <RadioButton.Item   style={styles.button5} label="Venda" labelStyle={styles.font_branca}  value="Novo" />
+      <RadioButton.Item  style={styles.button5} label="Alugel" labelStyle={styles.font_branca}  value="Usado" />
+    </RadioButton.Group>
+    
+     
+</View>
     
        <View  >
   <RadioButton.Group   onValueChange={value => setCategoria(value)} value={categoria}>
         
       <Text style={styles.label}>Categotia</Text>
-      <RadioButton.Item   style={styles.button5} label="Roupas" labelStyle={styles.font_branca}  value="Roupas" />
-      <RadioButton.Item  style={styles.button5} label="Acessorios de Moda" labelStyle={styles.font_branca}  value="acessorios de Moda" />
-      <RadioButton.Item   style={styles.button5} label="Comida" labelStyle={styles.font_branca}  value="Comida" />
-      <RadioButton.Item  style={styles.button5} label="Eletrônicos " labelStyle={styles.font_branca}  value="Eletônicos" />
-      <RadioButton.Item   style={styles.button5} label="Brinquedos" labelStyle={styles.font_branca}  value="Brinquedos" />
+      <RadioButton.Item   style={styles.button5} label="Casa" labelStyle={styles.font_branca}  value="Roupas" />
+      <RadioButton.Item  style={styles.button5} label="Apartamento" labelStyle={styles.font_branca}  value="acessorios de Moda" />
+      <RadioButton.Item   style={styles.button5} label="Sala Comercial" labelStyle={styles.font_branca}  value="Comida" />
+      <RadioButton.Item  style={styles.button5} label="Sitio ou chacaras  " labelStyle={styles.font_branca}  value="Eletônicos" />
+      <RadioButton.Item   style={styles.button5} label="Galpão" labelStyle={styles.font_branca}  value="Brinquedos" />
       <RadioButton.Item  style={styles.button5} label="outros" labelStyle={styles.font_branca}  value="outros" />
        </RadioButton.Group>
     
@@ -180,6 +190,7 @@ console.log(produto)
 
 
 <View  >
+    
   <RadioButton.Group   color='#ffffff'  onValueChange={value => setEstado(value)} value={estado}>
         
       <Text style={styles.label}>Estado do Produto</Text>
@@ -216,7 +227,7 @@ console.log(produto)
    
      <View >
     <Text style={styles.label}>Descrição Anuncio</Text>
-    <TextInput multiline={true} style={styles.input_texarea}   placeholder="Fale sobre Produto que você estar anunciando" leftIcon={{ type: 'font-awesome', name: 'archive' }}
+    <TextInput multiline={true} style={styles.input_texarea}   placeholder="Fale sobre imovel anunciado" leftIcon={{ type: 'font-awesome', name: 'archive' }}
      onChangeText={value =>setDescricao(value) } /> 
      </View>
 

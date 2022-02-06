@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Button, Input, Text } from 'react-native-elements';
-import { Alert, KeyboardAvoidingView, ActivityIndicator, StatusBar, StyleSheet, Image, TextInput, View, ScrollView, Select, TouchableOpacity } from 'react-native';
+import {Platform, Alert, KeyboardAvoidingView, ActivityIndicator, StatusBar, StyleSheet, Image, TextInput, View, ScrollView, Select, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import styles from '../Estilo';
 import AsyncStorage from '@react-native-async-storage/async-storage';
