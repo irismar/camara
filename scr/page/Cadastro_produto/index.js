@@ -4,7 +4,7 @@ import { Alert, KeyboardAvoidingView, StatusBar, TouchableOpacity,StyleSheet, Im
 import{FontAwesome} from '@expo/vector-icons';
 import { Picker  } from '@react-native-picker/picker';
 import { TextInputMask } from 'react-native-masked-text'
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RadioButton } from 'react-native-paper';
 import  Icon  from 'react-native-vector-icons/FontAwesome5';
 import { saveToLibraryAsync } from 'expo-media-library';
@@ -28,12 +28,45 @@ export default function Cadastro_produto( {navigation, route}) {
     
 
    
-    const [id_anuciante,setId_anuciante]=useState(route.params?.id_anunciante)
-    const [nome,setNome]=useState(null);
+    
+   
     const [descricao,setDescricao]=useState(null);
     const [ preco,setPreco]=useState(null);
+
+
+    ///////////////////////////////////
+    const [ avatar,setAvatar]=useState(null);
+    const [ id_anunciante,setId_anunciante]=useState(null)
+    const [ nome,setNome]=useState(null);
+    const [ endereco,setEndereco]=useState(null);
+    const [ lat,setLat]=useState(null);
+    const [ log,setLog]=useState(null);
+    const [ tell,setTell]=useState(null);
    
-    var produto={ titulo:titulo, categoria: categoria,estado:estado,preco:preco,descricao:descricao,id_anuciante:id_anuciante}
+    useEffect(() => {
+ 
+      async function dados_usuario  ()  {
+        /////chamar codido usuario unico//////
+        var id=await AsyncStorage.getItem('ID')
+        if(id){setId_anunciante(id)}
+        var avar= await AsyncStorage.getItem('AVATAR')
+        if(avar){ setAvatar(avar)}
+        var nome= await AsyncStorage.getItem('NOME')
+        if(nome){ setNome(nome)}
+        var endereco= await AsyncStorage.getItem('ENDERECO')
+        if(endereco){ setEndereco(endereco)}
+        var lat= await AsyncStorage.getItem('LAT')
+        if(lat){ setLat(lat)}
+        var log= await AsyncStorage.getItem('LOG')
+        if(log){ setLog(log)} 
+        var tell= await AsyncStorage.getItem('TELL')
+        if(tell){ setTell(tell)}    
+      } dados_usuario()      
+    }, []);
+
+
+
+    var produto={ titulo:titulo, categoria: categoria,estado:estado,preco:preco,descricao:descricao,id_anunciante:id_anunciante,nome:nome,avatar:avatar,endereco:endereco,lat:lat,log:log,tell:tell}
              
 console.log(produto)
               async function  gravar() {  

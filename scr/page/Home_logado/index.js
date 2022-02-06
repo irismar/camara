@@ -14,6 +14,7 @@ export default function Home_logado ({ navigation, route }) {
   const [pagina, setPagina] = useState(1);
   const [anuncio_pagina, setAnuncio_pagina] = useState(1);
   const [loadin, setLoadin] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
   const [logogin, setLogogin] = useState(false);
   const [id_anunciante, setId_anunciante] = useState(false);
   const [toktok, setToktok] = useState(false);
@@ -66,9 +67,9 @@ export default function Home_logado ({ navigation, route }) {
     
   }, []);
 
+  async function getProdutos( shouldRefresh = false) {
  
- 
-  const getProdutos = async () => {
+  
     if (loadin) return;
 
     setLoadin(true);
@@ -76,18 +77,27 @@ export default function Home_logado ({ navigation, route }) {
     await fetch("https://anuncio360.com/projeto/exibir.php?pagina=" + pagina)
       .then((response) => response.json())
       .then((responseJson) => (
-
+    
         // console.log(responseJson),
-        setData([...data, ...responseJson]),
+        setData(shouldRefresh ? data :[...data, ...responseJson]),
         setLoadin(false)
 
       ));
-
     setPagina(pagina + 1);
 
     //console.log(data);
   }  
-  const Item = ({ titulo, id, preco, descricao, estado, url, oi }) => (
+
+  async function refreshList() {
+    setRefreshing(true);
+    
+    await getProdutos( true);
+
+    setRefreshing(false);
+  }
+
+
+  const Item = ({ titulo, id, preco, descricao, estado, url }) => (
 
     <>
       <View style={styles.quadro}>
@@ -145,7 +155,7 @@ export default function Home_logado ({ navigation, route }) {
     preco={item.preco}
     descricao={item.descricao}
     estado={item.estado}
-    url={item.url}
+    url={item. urlcode}
 
   />
   );
@@ -182,6 +192,9 @@ export default function Home_logado ({ navigation, route }) {
     <SafeAreaView style={styles.container}>
       <FlatList
         data={data}
+        showsVerticalScrollIndicator={false}
+        onRefresh={refreshList}
+        refreshing={refreshing}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         onEndReached={getProdutos}

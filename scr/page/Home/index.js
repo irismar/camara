@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import { StatusBar } from "expo-status-bar";
 import { WebView } from 'react-native-webview';
-
 import { Image, SafeAreaView, View, FlatList, StyleSheet, Text, TouchableOpacity, ScrollView, ActivityIndicator, Alert } from 'react-native';
 import styles from '../Estilo';
 
@@ -38,7 +37,7 @@ export default function Home({ navigation, route }) {
     if (loadin) return;
 
     setLoadin(true);
-    setAnuncio_pagina(21)
+    setAnuncio_pagina(11)
     await fetch("https://anuncio360.com/projeto/exibir.php?pagina=" + pagina)
       .then((response) => response.json())
       .then((responseJson) => (
@@ -121,6 +120,7 @@ export default function Home({ navigation, route }) {
     descricao={item.descricao}
     estado={item.estado}
     url={item.url}
+    id_anunciante={item.id_anunciante}
 
   />
   );

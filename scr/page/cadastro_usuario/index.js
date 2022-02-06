@@ -1,6 +1,6 @@
 import React, { useState, useEffect,useRef } from 'react';
 import { Button, CheckBox } from 'react-native-elements';
-import { ActivityIndicator, Alert, KeyboardAvoidingView, StatusBar, StyleSheet, Image,TouchableOpacity, Text,   View, ScrollView,Select } from 'react-native';
+import { ActivityIndicator, Alert, KeyboardAvoidingView, StatusBar, StyleSheet, Image,TouchableOpacity, Text,SafeAreaView,   View, ScrollView,Select, Modal } from 'react-native';
 import{FontAwesome} from '@expo/vector-icons';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';   
 import { Input } from 'react-native-elements';
@@ -11,85 +11,69 @@ import { TextInput } from 'react-native-paper';
 import styles from '../Estilo';
 
 export default function Cadastro_usuario( {navigation, route}) {
-  const [senha, setSenha] = useState();
-  const [nome_usuario,setNome_usuario]=useState(null);
-  const [ categoria,setCategoria]=useState( ['Escalha uma Categoria','Roupas','Calcados','Acessorios', 'Moda','Comida','Brinquedo']);
-  const [tipo_anuncio_selecionado,setTipo_anuncio_selecionado]=useState([])
-  const [status, setStatus] = useState({
-            type: '',
-        mensagem: '', 
-        token: ''
-  }) 
-  const [token, setToken] = useState()   
-    
-    const [load,setLoad]=useState();
-    const [telefone,setTelefone]=useState(null);
-    const [endereco,setEndereco]=useState(null);
-    const [long,setLong]=useState();
-    const [lat,setLat]=useState();
-    useEffect(() => {
-      setLoad(false)
-      async function localiza  ()  {
-        var latit= await AsyncStorage.getItem('LATITUDE')
-        if(latit){ setLat(latit)}
-        var long= await AsyncStorage.getItem('LONGITUDE')
-        if(long){ setLong(long)}   }    
-      ///////localiza()/////  
   
-     //// token   () 
-    }, []);
-
+  const [nome_usuario,setNome_usuario]=useState(null);
+  const [load,setLoad]=useState(false);
+  const [erro ,setErro]=useState(false);
     
 
-   var tipo_anuncio=route.params?.tipo_anuncio
+
+function removeAcento (text)
+{       
+    text = text.toLowerCase();   
+    text = text.trim();                                                         
+    text = text.replace(new RegExp('[ÁÀÂÃ]','gi'), 'a');
+    text = text.replace(new RegExp('[ÉÈÊ]','gi'), 'e');
+    text = text.replace(new RegExp('[ÍÌÎ]','gi'), 'i');
+    text = text.replace(new RegExp('[ÓÒÔÕ]','gi'), 'o');
+    text = text.replace(new RegExp('[ÚÙÛ]','gi'), 'u');
+    text = text.replace(new RegExp('[Ç]','gi'), 'c');
+    text = text.replace(new RegExp('[ ]','gi'), '_');
+    text = text.replace(new RegExp('[,]','gi'), '');
+    text = text.replace(new RegExp('[.]','gi'), '');
+    text = text.replace(new RegExp('[@ # $ % ¨& * ( ). + ]','gi'), '');
+    return text;                 
+}
+    
+    
+
+  
    
 
 
     
-    var cadastro_usuario={ nome_usuario:nome_usuario,senha:senha,tipo_negocio:tipo_anuncio,endereco:endereco,telefone:telefone,latitude:lat,longitude:long}
-           
-    
-    async function   salvar ()  {   
-      setLoad(true)
-await fetch("https://anuncio360.com/projeto/cadastro_usuario.php", {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ cadastro_usuario })
-})
-  .then((response) => response.json())
-  .then((responseJson) => {
-   console.log(responseJson)
+     function  analise(){
+     var tipo_negocio=route.params?.tipo_negocio;
+ setLoad(true)
+  console.log('apertou salvar');
+  
+        
+      fetch("https://anuncio360.com/projeto/verificar_user.php?user="+nome_usuario)
+      ///// fetch('https://anuncio360.com/projeto/login.php?senha=123&&user=%20admin')
+     .then((response) => response.json())
+    .then((responseJson) => {
+    console.log(responseJson)
     if (responseJson.erro) {
 
-    alert('Erro tente novamente ')
+     setErro(true)
       
-      setStatus({
-        type: 'erro',
-        mensagem: responseJson.messagem
-      });
-    } else {
-      setToken(responseJson.token )
-   
-      setStatus({ type: 'success', 
-       mensagem: responseJson.messagem
-       ,token:responseJson.token});
+    }else{
+      navigation.navigate('Cadastro_usuario_1', {tipo_negocio:tipo_negocio,nome_usuario:nome_usuario}) 
 
+    }
+        
+    })
+      
+      
+    
+    
+    
+ setLoad(false)   
+       
+      }        
+    
+    
 
-       navigation.navigate('Foto_perfil', {token:responseJson.token,nome_usuario:nome_usuario})
-
-
-   }
-  }).catch(() => {
-    setLoad(false)
-    setStatus({
-      type: 'erro',
-      mensagem: 'Produto não cadastro com sucesso, tente mais tarde!'
-    });
-  });
-  
-}
 if(load){
 
 
@@ -132,7 +116,7 @@ style={styles.head}
  </>   
 
   )
-}
+}else {
 
 
          return (
@@ -160,14 +144,49 @@ style={styles.head}
     </View> 
 
 </View>
+
+<Modal  animationType="slide"
+   
+   visible={erro}>
+<View style={{alignItems:'center',  flex: 1}} >
+     
+<View style={{alignItems:'center', marginTop:200, flexDirection:'row'}} >
+     
+    
+     <View>     
+     <FontAwesome.Button  onPress={()=>setErro(false) }  style={styles.button4} name="times-circle" size={20}     backgroundColor="#feffff" >
+     <Text  style={styles.font_branca_16} >Já Existe usuario cadastrado com este nome  </Text>    
+     </FontAwesome.Button>     
+     </View>
+     </View>
+
+     <View style={{alignItems:'center', marginTop:100,    flexDirection:'row'}} >
+     <Text>tente outro nome </Text>
+     </View>
+     
+     
+ </View> 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   </Modal> 
+
+
+   <Text  style={styles.font} >  Anúncio  Selecionado {route.params?.tipo_anuncio}</Text>
+
 <SafeAreaView style={styles.container}>
 <KeyboardAvoidingView  style={styles.container}
-       keyboardVerticalOffset={10} behavior={Platform.OS === "ios" ? "padding" : "height"}  >
+       keyboardVerticalOffset={10}   >
       <ScrollView keyboardShouldPersistTaps={'handled'}>      
  
      
 
-<View>
+
 <TouchableOpacity  style={styles.button} >
       </TouchableOpacity>
       <View>
@@ -175,94 +194,10 @@ style={styles.head}
  placeholder="Nome da Sua Marca ou Negocio"
    leftIcon={{ type: 'font-awesome', name: 'id-badge' }}   
    style={styles.input}    autoCorrect={false}
-   onChangeText={value => setNome_usuario(value) } />
+   onChangeText={value => setNome_usuario(removeAcento(value)) } />
 
-              
+<Text>anuncio360.com/{nome_usuario}</Text>           
               </View>
-
-              <View  >
-
-
-
-              <Input
-   placeholder="Crie Senha Acesso"
-   leftIcon={{ type: 'font-awesome', name: 'lock' }}  secureTextEntry={true}   textContentType="password"
-   style={styles.input}     autoCorrect={false}
-   onChangeText={value =>setSenha(value) } />
-
-                
-              </View>
-
-
-      
-      
-</View>
-<View>
-     
-</View>
-
-
-
-    
-
-
- 
- 
-   
- <View style={{flexDirection:'row', marginBottom:30}} >
-      <Image
-   source ={require('../../asset/icone_zap.png')}
-   style={styles.icone_imput}
-  />
-      <TextInputMask
-  type={'cel-phone'}
-  placeholder="Telefone  whatsapp"
-  style={styles.input}  
-  options={{
-    maskType: 'BRL',
-    withDDD: true,
-    dddMask: '(99) '
-  }}
-  leftIcon={{ type: 'font-awesome', name: 'whatsapp' }}
-  value={telefone}
-  onChangeText={value =>setTelefone(value)}
-/>
-     
-</View>
-
-
-<View style={{flexDirection:'row'}} >
-      <Image
-   source ={require('../../asset/icone_mapa.png')}
-   style={styles.icone_imput}
-  />
-
-<GooglePlacesAutocomplete   styles={{ width:350, }} 
-      placeholder="Search"
-      onPress={(data, details = null) => {
-        // 'details' is provided when fetchDetails = true
-        console.log(details.formatted_address);
-        setLat(details.geometry.location.lat)
-        setLong(details.geometry.location.lng)
-        setEndereco(details.formatted_address)
-       
-      }}
-      query={{
-        key: 'AIzaSyBTCJwwUlXn00DQX19Tr89S6hfEERGxaNg',
-        language: 'pt-br',
-      }}
-      placeholder = 'Digite Endereço' 
-      enablePoweredByContainer={false}
-      fetchDetails = { true }
-
-     
-      
-      
-    />
-  </View>
-
-
-<Text  style={styles.font} >  Anuncio Selecionado {route.params?.tipo_anuncio}</Text>
          <View >
      <FontAwesome.Button style={styles.salvar}   backgroundColor="#14151800" >
     
@@ -271,10 +206,11 @@ style={styles.head}
 
 
       <View >
-      <TouchableOpacity  style={styles.button4}  >
+      
+      <FontAwesome.Button  onPress={()=>analise() }  style={styles.button4} name="save" size={20}     backgroundColor="#feffff" >
+     <Text  style={styles.font_branca} >Cadastrar </Text>    
+     </FontAwesome.Button> 
 
-<Text onPress={() => salvar()} style={styles.font_branca} > Salvar </Text> 
-</TouchableOpacity>
      
       </View>
    
@@ -289,6 +225,5 @@ style={styles.head}
 
 
     );
-  }
+  } }
   
-''

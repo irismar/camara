@@ -4,26 +4,15 @@ import { Alert, KeyboardAvoidingView, ActivityIndicator, StatusBar, StyleSheet, 
 import { FontAwesome } from '@expo/vector-icons';
 import styles from '../Estilo';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-
-
 export default function Local( {navigation, route}) {
     return (
-      <>
-      
+      <>      
       <Topo/>
       <Text>Eu sou Locais</Text>
       </>
-    );
-  
- function Topo() {
- 
-  
-
- 
-   
-  return (
-    
+    );  
+ function Topo() {  
+  return (  
 
     <>
      <StatusBar backgroundColor="#000" translucent={true} />

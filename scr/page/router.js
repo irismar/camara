@@ -14,6 +14,7 @@ import Cadastro_produto from "../page/Cadastro_produto";
 import Sobre from "../page/Sobre";
 import Lista from "../page/Lista";
 import Cadastro_usuario from "../page/cadastro_usuario";
+import Cadastro_usuario_1 from "../page/Cadastro_usuario_1";
 import Login from "../page/Login";
 import Configuracao from "../page/Configuracao";
 import Porta from "../page/Porta";
@@ -131,10 +132,14 @@ function Routes( ) {
               component={Automovel}
               options={{headerShown:false}}
         /> 
-  
+      <Stack.Screen
+              name="Cadastro_usuario_1"
+              component={Cadastro_usuario_1}
+              options={{headerShown:false}}
+        />
 
         
-      
+  
           
          </Stack.Navigator>
 

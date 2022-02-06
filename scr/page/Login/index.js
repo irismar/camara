@@ -58,12 +58,20 @@ await fetch("https://anuncio360.com/projeto/login.php?token="+token)
   var token_get= responseJson.token//Alert.alert(status)
   var avatar= responseJson.Foto_perfil//Alert.alert(status)
   var tipo_negocio= responseJson.tipo_negocio//Alert.alert(status)
+  var endereco= responseJson.endereco//endereco
+  var lat= responseJson.lat//endereco
+  var log= responseJson.log//endereco
+  var tell= responseJson.tell//endereco
   console.log(token_get);
   AsyncStorage.setItem('TOKEN',  token_get)
   AsyncStorage.setItem('NOME',  nome_get)
   AsyncStorage.setItem('ID',  id_get)
   AsyncStorage.setItem('AVATAR',avatar)
   AsyncStorage.setItem('TIPO_NOGOCIO', tipo_negocio)
+  AsyncStorage.setItem('ENDERECO', endereco)
+  AsyncStorage.setItem('LAT',lat)
+  AsyncStorage.setItem('LOG',log)
+  AsyncStorage.setItem('TELL',tell)
   if(tipo_negocio==='Automoveis'){
 
     navigation.navigate('Automoveis', {token:token_get})  
@@ -123,17 +131,25 @@ setLoadin(true)
      } else {
           setLoadin(false)
       setStatus({  mensagem: responseJson.messagem, id: responseJson.id, });
-      var nome_get= responseJson.usuario //Alert.alert(status)
+  var nome_get= responseJson.usuario //Alert.alert(status)
   var id_get= responseJson.id 
   var token_get= responseJson.token//Alert.alert(status)
   var avatar= responseJson.Foto_perfil//Alert.alert(status)
   var tipo_negocio= responseJson.tipo_negocio//Alert.alert(status)
+  var endereco= responseJson.endereco//endereco
+  var lat= responseJson.lat//endereco
+  var log= responseJson.log//endereco
+  var tell= responseJson.tell//endereco
   console.log(token_get);
   AsyncStorage.setItem('TOKEN',  token_get)
   AsyncStorage.setItem('NOME',  nome_get)
   AsyncStorage.setItem('ID',  id_get)
   AsyncStorage.setItem('AVATAR',avatar)
   AsyncStorage.setItem('TIPO_NOGOCIO', tipo_negocio)
+  AsyncStorage.setItem('ENDERECO', endereco)
+  AsyncStorage.setItem('LAT',lat)
+  AsyncStorage.setItem('LOG',log)
+  AsyncStorage.setItem('TELL',tell)
   if(tipo_negocio==='Automoveis'){
 
    navigation.navigate('Automoveis', {token:token_get})  
@@ -190,7 +206,7 @@ setLoadin(true)
 
 
         <StatusBar backgroundColor="#000" translucent={true} />
-        <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={3}   >
+        <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={50}   >
 
           <ScrollView>
 
@@ -229,11 +245,13 @@ setLoadin(true)
                 
               </View>
 
-
+          
 
               <TouchableOpacity style={styles.button4} >
-
-                <Text onPress={() => entrar()} style={styles.font_branca} > Entrar </Text> 
+              <FontAwesome.Button   onPress={() => entrar()}  style={styles.button4}     >
+     <Text  style={styles.font_branca} >Entrar</Text>    
+     </FontAwesome.Button>         
+               
               </TouchableOpacity>
 
               <View style={{ flexDirection: 'row' }} >

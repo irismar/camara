@@ -67,17 +67,14 @@ const styles = StyleSheet.create({
      },
         input: {
                height:50,
-               width:'90%',
-               borderRadius:2,
+               width:'90%',              
                marginLeft:'0%',
                marginTop:'0%',
                color:'#000000', 
                fontSize:16,
                alignItems:'center',
-               justifyContent:'center',
-                
-               borderColor:'#cacdcfcc',
-               borderWidth:0,
+               justifyContent:'center',            
+              
                backgroundColor:'#ebedef',
                     },
                   
@@ -93,8 +90,7 @@ const styles = StyleSheet.create({
       justifyContent:'center',
       marginBottom:40, 
       borderColor:'#cacdcfcc',
-      borderWidth:1,
-      backgroundColor:'#ebedef',
+     
     
                     },   
     buttonContainer: {
@@ -129,12 +125,12 @@ const styles = StyleSheet.create({
           
             },
       button4: {  
-        backgroundColor:cor_botoa, 
+                backgroundColor:cor_botoa, 
                 height:50,
                 width: Dimensions.get('window').width/1,
                 alignItems: 'center',
                 justifyContent:'center',
-                borderColor:'#ebedef',
+             
               
                 },
        button5: {     fontFamily:'Ubuntu_700Bold',
@@ -160,8 +156,9 @@ const styles = StyleSheet.create({
                     }, 
                     
                   topo_foto2: {
-                      width:'58%',
-                      marginTop:5,             
+                      width:'55%',
+                      marginTop:5,
+                      marginLeft:5,             
                    
                       },  
    button_foto_Voltar: {  
@@ -171,15 +168,16 @@ const styles = StyleSheet.create({
                   fontSize:18,
                   color:'#ffffff47', 
                   fontWeight:'900',
-                  backgroundColor:'#959ca347', 
-                  height:50,
-                  margin:5,
+                  backgroundColor:'#272728', 
+                  height:45,
+                  marginLeft:5,
                   width:'100%',
                   alignItems: 'center',
                   justifyContent:'center',
                 
                 
-                  },                      
+                  }, 
+                                       
        button_branco_300: {  
         backgroundColor:cor_botoa, 
                   height:50,
@@ -379,8 +377,7 @@ const styles = StyleSheet.create({
     },
     quadro: {
       width: '100%',
-      height: 'auto',
-     
+      height: 'auto',   
     
       backgroundColor: '#f9f9f914',
       borderColor:'#f1f3f5',
@@ -389,7 +386,7 @@ const styles = StyleSheet.create({
 
     quadro2: {
       width: '100%',
-      height:376,
+      height:470,
      
     
       backgroundColor: '#f9f9f914',
@@ -412,8 +409,13 @@ const styles = StyleSheet.create({
   
 
   camera: {
-    flex: 1,
-    height:600,
+    marginTop:100,
+    marginLeft:'auto',
+    marginRight:'auto',
+    width:360, 
+    height:360,
+    alignItems: 'center',
+    justifyContent:'center',
   },
  font_verde: {  
           fontFamily:'Ubuntu_700Bold', 

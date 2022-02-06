@@ -49,24 +49,24 @@ export default function Cadastro( {navigation, route}) {
 
       
             
-      <FontAwesome.Button onPress={()=>navigation.navigate('Imovel', {tipo_anuncio:'Imovel'}) } style={styles.button_branco_300}name="home"  size={22}  >
+      <FontAwesome.Button onPress={()=>navigation.navigate('Imovel', {tipo_negocio:'Imovel'}) } style={styles.button_branco_300}name="home"  size={22}  >
       <Text  style={styles.font_branca} >Imovel </Text>
       </FontAwesome.Button>
 
       <TouchableOpacity  style={styles.button2} >
       </TouchableOpacity>
-      <FontAwesome.Button onPress={()=>navigation.navigate('Automovel', {tipo_anuncio:'Automovel'}) } style={styles.button_branco_300} name="car" size={22}   >
+      <FontAwesome.Button onPress={()=>navigation.navigate('Automovel', {tipo_negocio:'Automovel'}) } style={styles.button_branco_300} name="car" size={22}   >
       <Text  style={styles.font_branca} >Automovel </Text>
       </FontAwesome.Button>
       
       <TouchableOpacity  style={styles.button2} >
       </TouchableOpacity>
-      <FontAwesome.Button onPress={()=>navigation.navigate('Local',  {tipo_anuncio:'Local'}) } style={styles.button_branco_300} name="map" size={22} color="#ffffff"  >
+      <FontAwesome.Button onPress={()=>navigation.navigate('Local',  {tipo_negocio:'Local'}) } style={styles.button_branco_300} name="map" size={22} color="#ffffff"  >
       <Text  style={styles.font_branca} >Locais</Text>
       </FontAwesome.Button>
       <TouchableOpacity  style={styles.button2} >
       </TouchableOpacity>
-      <FontAwesome.Button onPress={()=> navigation.navigate('Cadastro_usuario', {tipo_anuncio:'Produto'}) } style={styles.button_branco_300} name="cart-plus" size={22} color="#ffffff"  >
+      <FontAwesome.Button onPress={()=> navigation.navigate('Cadastro_usuario', {tipo_negocio:'Produto'}) } style={styles.button_branco_300} name="cart-plus" size={22} color="#ffffff"  >
       <Text  style={styles.font_branca} >Produtos </Text>
       </FontAwesome.Button>
 
