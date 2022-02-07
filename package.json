@@ -18,7 +18,7 @@
     "versionCode": 1
   },
   "web": {
-    "package": "com.yourcompany.yourappname",
+    "package": "anuncio360.com",
     "versionCode": 1
   },
   "dependencies": {
