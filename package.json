@@ -3,11 +3,8 @@
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "node Controller.js",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
-    "eject": "expo eject"
+    "start": "node Controller.js"
+   
   },
   "ios": {
     "bundleIdentifier": "com.yourcompany.yourappname",
